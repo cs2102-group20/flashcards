@@ -9,15 +9,15 @@ create table card_set(
   description varchar(200),
   language_1 varchar(20),
   language_2 varchar(20)
-  user_id varchar(20) references user(username));
+  foreign key user_id varchar(20) references user(username));
   
 create table card(
   card_id integer auto_increment primary key,
   word varchar(30),
   translation varchar(60),
-  set_id integer references card_set(set_id));
+  foreign key set_id integer references card_set(set_id) on delete cascade);
   
 create table favorite(
   foreign key user_id varchar(20) references user(username),
-  foreign key set_id integer references card_set(set_id),
+  foreign key set_id integer references card_set(set_id) on delete cascade,
   primary key(user_id,set_id));
