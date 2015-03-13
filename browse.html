@@ -52,9 +52,36 @@
       <div class="row">
         <div class="col-md-2">
           <h2>Filter</h2>
-          <p></p>
-          <p><a class="btn btn-default" href="#" role="button">Apply</a></p>
+          <form>
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input name="title" type="text" class="form-control" placeholder="Keywords">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input name="description" type="text" class="form-control" placeholder="Keywords">
+            </div>
+            <div class="form-group">
+              <label for="creator">Creator</label>
+              <input name="creator" type="text" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label for="languages">Languages</label>
+              <select name="languages" multiple class="form-control">
+                <option selected>Language A</option>
+                <option selected>Language B</option>
+                <option selected>Language C</option>
+                <option selected>Language D</option>
+                <option selected>Language E</option>
+                <option selected>Language F</option>
+                <option selected>Language G</option>
+              </select>
+            </div>
+            <button class="btn btn-default" type="submit">Apply</button>
+          </form>
         </div>
+
+
         <div class="col-md-10">
           <h2>Results</h2>
 
@@ -69,7 +96,12 @@
               <p>By username</p>
               <p>Set description</p>
             </li>
-          </table>
+            <li class="list-group-item">
+              <h4>Set Title</h4>
+              <p>By username</p>
+              <p>Set description</p>
+            </li>
+          </ul>
 
           <nav>
             <ul class="pagination">
