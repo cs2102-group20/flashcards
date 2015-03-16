@@ -3,3 +3,18 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+.right_inline {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 0px;
+  float:right;
+}
+.left_inline {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 0px;
+  float:left;
+}
+.scrollContainer{
+  overflow: auto;
+}
