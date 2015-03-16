@@ -8,10 +8,10 @@
     <title>Language Flashcards</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Flashcards custom css -->
-    <link href="../css/flashcards.css" rel="stylesheet">
+    <link href="css/flashcards.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -25,24 +25,17 @@
   	<script type="text/javascript">
 		//Preloading images	
 			fileNames = [
-					"../images/previous.png",
-					"../images/next.png"
 			];
 			for (i=0;i<fileNames.length;i++) { var p=new Image(); p.src=fileNames[i];}
 	
 		//webpage display logic
-		var editSta=0;
-		
-		function editCard(){
-			if(editSta==1){//edit mode
-			 document.getElementById("editBtn").style.background='#FF0000';
-			//enter enter mode
+		function validate(){
+			if((document.getElementById("pwConfirm").value)!=(document.getElementById("pw").value)) {
+				document.getElementById("confirmPwMsg").innerHTML="<font size='3' color='red'>The passwords do not match. Please try again</font>";
 			}else{
-			
-			 document.getElementById("editBtn").style.background='#FFFFFF';
+				document.getElementById("confirmPwMsg").innerHTML="&nbsp;";
 			}
 		}
-
 	</script>
   
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -72,23 +65,32 @@
 
     <div class="container">
       <!-- Example row of columns -->
-      <div class="row">
-			<div  class="left_inline"> 
-				<a href="overview.html"><button class="btn btn-default" id="backBtn" type="button" style="background-color:#FFFFFF">Back</button></a>
-		   </div>
-		  <div  class="right_inline"> 
-				<button class="btn btn-default" id="editBtn" type="button" style="background-color:#FFFFFF" onclick="editSta=1-editSta;editCard();">Edit</button>
-		  </div>
-      </div>
 	  <div class="jumbotron" align="center" >
-      <div class="scrollContainer">
-		<p class="middleText"><font size='4'>word</font></p>
+      <div class="smallContainer">
+			<h2>Register</h2>
+        <form>
+            <div  class="regForm">
+			Email: 
+              <input type="text" placeholder="Email" class="form-control" id="email">
+            </div>
+			<br /><br />
+            <div  class="regForm">
+			Password:
+              <input type="password" placeholder="Password" class="form-control" id="pw">
+            </div>
+            <div  class="regForm">
+			<br /><br />
+			Confirm password:
+              <input type="password" placeholder="Password" class="form-control" id="pwConfirm" onchange="validate();">
+            </div>			
+			<br />
+			<div id="confirmPwMsg">&nbsp;
+			</div>
+			<br />
+            <button type="submit" class="btn btn-success">Register!</button>
+          </form>
       </div>
     </div>
-	  
-      <div class="row" align="center">
-			<input type="image" src="../images/previous.png" style="width: 30px; height: 30px" /> <input type="image" src="../images/next.png" style="width: 30px; height: 30px"/>
-		</div>
 		
       <hr>
 
