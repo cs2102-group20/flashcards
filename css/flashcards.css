@@ -25,6 +25,7 @@ body {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  white-space: pre; /*Delete it if you don't want to preserve white spaces */
 }
 .smallContainer{
   background-color:white; 
@@ -38,7 +39,8 @@ body {
 }
 .textAreaFill{
   width: 99%;
-  height: 340px;
+  height: 344px;
   border: none;
+  resize: none;
   padding: 0px; 
 }
