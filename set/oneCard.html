@@ -36,9 +36,10 @@
 		function editCard(){
 			if(editSta==1){//edit mode
 			 document.getElementById("editBtn").style.background='#FF0000';
-			//enter enter mode
+			//enter edit mode
+			document.getElementById("cardDiv").innerHTML="<form><textarea id='cardEditText' class='textAreaFill'>"+document.getElementById("cardP").innerHTML+"</textarea></form>";
 			}else{
-			
+			document.getElementById("cardDiv").innerHTML="<p class='middleText' id='cardP'>"+document.getElementById("cardEditText").value+"</p>";
 			 document.getElementById("editBtn").style.background='#FFFFFF';
 			}
 		}
@@ -81,8 +82,8 @@
 		  </div>
       </div>
 	  <div class="jumbotron" align="center" >
-      <div class="scrollContainer">
-		<p class="middleText"><font size='4'>word</font></p>
+      <div class="scrollContainer" id="cardDiv">
+		<p class="middleText" id="cardP">word</p>
       </div>
     </div>
 	  

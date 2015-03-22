@@ -17,7 +17,6 @@ body {
 }
 .scrollContainer {
   overflow: auto;
-
   background-color:white; 
   width: 800px; 
   height: 350px;
@@ -36,4 +35,10 @@ body {
 .regForm {
   padding-left: 10px;
   padding-right: 10px;
+}
+.textAreaFill{
+  width: 99%;
+  height: 340px;
+  border: none;
+  padding: 0px; 
 }
