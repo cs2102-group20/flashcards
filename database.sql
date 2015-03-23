@@ -1,7 +1,8 @@
-create table user(
+create table users(
   username varchar(20) primary key,
   password varchar(20),
-  admin boolean);
+  isAdmin BOOLEAN
+  );
   
 create table card_set(
   set_id integer auto_increment primary key,
