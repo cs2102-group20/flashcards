@@ -27,21 +27,24 @@
 		function preloadImages(){
 			fileNames = [
 			];
-			for (i=0;i<fileNames.length;i++) { var p=new Image(); p.src=fileNames[i];
+			for (i=0;i<fileNames.length;i++) { var p=new Image(); p.src=fileNames[i];}
 		}
-	
 		//webpage display logic
-		function hey(){
-			alert("hhhhhhh");
+		function validateEmail(){
+			//RFC5322 standard
+			var tmp=document.getElementById("email").value;
+			var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;  //reference: http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
+			if(re.test(tmp))document.getElementById("emailMsg").innerHTML="&nbsp;";
+			else document.getElementById("emailMsg").innerHTML="<font size='2' color='red'>Invalid. Please try again</font>";
 		}
 		function validatePw(){
-			alert("working");
 			var tmp=document.getElementById("pw").value;
 			if(tmp.length<8 || tmp.length>20){
 				document.getElementById("pwMsg").innerHTML="<font size='2' color='red'>The password should comprise 8-20 characters. Please try again</font>";
-			}else{
+			}
+			else{
 				var pwOkay=true;
-				for (int i=0;i<tmp.length && pwOkay;i++){
+				for (var i=0;i<tmp.length && pwOkay;i++){
 					if( tmp.charCodeAt(i) < 48 || (tmp.charCodeAt(i) > 57 && tmp.charCodeAt(i) < 65) || (tmp.charCodeAt(i) >90 && tmp.charCodeAt(i) < 97) || tmp.charCodeAt(i) >122){
 						document.getElementById("pwMsg").innerHTML="<font size='2' color='red'>The password should not contain special characters or spaces. Please try again</font>";
 						pwOkay=false;
@@ -52,7 +55,7 @@
 		}
 		function validateConfirmPw(){
 			if((document.getElementById("pwConfirm").value)!=(document.getElementById("pw").value)) {
-				document.getElementById("confirmPwMsg").innerHTML="<font size='3' color='red'>The passwords do not match. Please try again</font>";
+				document.getElementById("confirmPwMsg").innerHTML="<font size='2' color='red'>The passwords do not match. Please try again</font>";
 			}else{
 				document.getElementById("confirmPwMsg").innerHTML="&nbsp;";
 			}
@@ -87,34 +90,37 @@
     <div class="container">
       <!-- Example row of columns -->
 	  <div class="jumbotron" align="center" >
+	  <form>
       <div class="smallContainer">
 			<h2>Register</h2>
-        <form>
+        
             <div  class="regForm">
 					Email: 
-					<input type="text" placeholder="Email" class="form-control" id="email">
+					<input type="text" placeholder="Email" class="form-control" id="email" onchange="validateEmail();">
             </div>
+				<div id="emailMsg">&nbsp;
+				</div>
 				<br />
             <div  class="regForm">
 					Password: <br />
 					<font size='1'>The password should comprise 8-20 characters, including capital or lowercase letters and digits. Special characters or spaces are not accepted.</font><br />
-              <input type="password" placeholder="Password" class="form-control" id="pw" onchange="hey();validatePw();">
+              <input type="password" placeholder="Password" class="form-control" id="pw" onchange="validatePw();">
             </div>
-			<br />
-            <div  class="regForm">
-						<div id="pwMsg">&nbsp;
+
+				<div id="pwMsg">&nbsp;
 				</div>
-			<br />
+				<br>
+            <div  class="regForm">
 			Confirm password:
-              <input type="password" placeholder="Password" class="form-control" id="pwConfirm" onchange="alert('hey');validateConfirmPw();">
+              <input type="password" placeholder="Password" class="form-control" id="pwConfirm" onchange="validateConfirmPw();">
             </div>			
-			<br />
+
 			<div id="confirmPwMsg">&nbsp;
 			</div>
-			<br />
-            <button type="submit" class="btn btn-success">Register!</button>
-          </form>
       </div>
+	  <br />
+     <button type="submit" class="btn btn-success">Register!</button>
+	  </form>
     </div>
 		
       <hr>
