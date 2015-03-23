@@ -23,7 +23,7 @@ class Generator {
 	TreeMap<String, Integer> cardPK;
 	
 	Random rnd;
-
+        String allowedPassword;
 	String[] language;
 	
 	public Generator() {
@@ -31,11 +31,11 @@ class Generator {
 		cardSet = new Vector < Vector < String > > ();
 		card = new Vector < Vector < String > > ();
 		
-		userDomain = new String[]{"varchar","varchar","boolean"};
+		userDomain = new String[]{"varchar","varchar","char(1)"};
 		cardSetDomain = new String[]{"integer","varchar","varchar","varchar","varchar","varchar"};
 		cardDomain = new String[]{"integer","varchar","varchar","integer"};
 		
-		userAttributes = new String[]{"username","password","admin"};
+		userAttributes = new String[]{"username","pw","isAdmin"};
 		cardSetAttributes = new String[]{"NULL","title","description","language_1","language_2","user_id"};
 		cardAttributes = new String[]{"NULL","word","translation","set_id"};
 		
@@ -44,20 +44,22 @@ class Generator {
 		cardPK = new TreeMap<String, Integer>();
 		
 		rnd = new Random();
-		
+                allowedPassword="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		language = new String[]{"Lunarian","Martian","Plutonian","Uranian","Neptunian","Vegeterian"};
 	}
 	
 	public void run() {
 		createUser();
 		createCardSet();
-		createCard();
+		//createCard();
 	}
 		
 	/*
- 	username varchar(20) primary key, 
- 	password varchar(20), 
- 	admin boolean); 
+        create table users(
+        username varchar(20) primary key,
+        pw varchar(20) NOT NULL CHECK (LENGTH(pw)>8),
+        isAdmin CHAR(1) NOT NULL CHECK (isAdmin = 'Y' OR isAdmin = 'N')
+        );
 	*/
 	public void createUser() {
 		int adminNum = 0;
@@ -74,24 +76,35 @@ class Generator {
 			user.get(i).set(0, temp);	// name
 			userPK.put(temp, i);
 			
-			user.get(i).set(1, "12345");	// password
+                        
+			user.get(i).set(1, passwordMaker(rnd,8+rnd.nextInt(13))); // password: 8-20 char
 			if (adminNum < 3) {				// admin
-				user.get(i).set(2, "TRUE");
+				user.get(i).set(2, "Y");
 				adminNum++;
 			}
-			else user.get(i).set(2, "FALSE");
+			else user.get(i).set(2, "N");
 		}
 		
-		fileMaker("user", user, userDomain, userAttributes);
+		fileMaker("users", user, userDomain, userAttributes);
 	}
-	
+        
+	private String passwordMaker(Random rnd, int length){
+            char [] tmp = new char[length];
+            int aplen=allowedPassword.length();
+            for (int i=0;i<length;i++){
+                tmp[i]=allowedPassword.charAt(rnd.nextInt(aplen));
+            }
+            return new String(tmp);
+        }
 	/*
-	set_id integer auto_increment primary key, 
- 	title varchar(50), 
- 	description varchar(200), 
- 	language_1 varchar(20), 
- 	language_2 varchar(20) 
- 	user_id varchar(20) references user(username)); 
+        create table card_set(
+        set_id integer primary key,
+        title varchar(50),
+        description varchar(200),
+        language_1 varchar(20),
+        language_2 varchar(20),
+        check (language_1 <> language_2),
+        user_id varchar(20) references users(username));
 	*/
 	public void createCardSet() {
 		for (int i = 0; i < cardSetNumber; i++) {
@@ -124,11 +137,12 @@ class Generator {
 	}
 	
 	/*
-	card_id integer auto_increment primary key,
-	word varchar(30),
-	translation varchar(60),
-	foreign key set_id integer references card_set(set_id) on delete cascade);
-	 */
+        create table card(
+        card_id integer primary key,
+        word varchar(30),
+        translation varchar(60),
+        set_id integer references card_set(set_id) on delete cascade);
+	*/
 	public void createCard() {
 		for (int i = 0; i < cardNumber; i++) {
 			card.add(new Vector < String > ());
@@ -145,7 +159,8 @@ class Generator {
 
 			card.get(i).set(1, wordMaker(rnd.nextInt(9)+4));	// set title
 			card.get(i).set(2, wordMaker(rnd.nextInt(9)+4));	// description
-			card.get(i).set(3, cardSet.get(rnd.nextInt(cardSetNumber)).get(0));
+			//card.get(i).set(3, cardSet.get(rnd.nextInt(cardSetNumber)).get(0));
+                        card.get(i).set(3, String.valueOf(1+rnd.nextInt(cardSetNumber)));
 		}
 		
 		fileMaker("card", card, cardDomain, cardAttributes);
@@ -210,9 +225,9 @@ class Generator {
 				
 				for (int i = 0; i < a.size(); i++) {
 					if (!nullCheck[i]) {
-						if (domain[i].toLowerCase().equals("varchar")) out.write("'");
+						if (domain[i].toLowerCase().equals("varchar") || domain[i].toLowerCase().equals("char(1)")) out.write("'");
 						out.write(a.get(i));
-						if (domain[i].toLowerCase().equals("varchar")) out.write("'");
+						if (domain[i].toLowerCase().equals("varchar") || domain[i].toLowerCase().equals("char(1)")) out.write("'");
 						if (i < a.size()-1) {
 							out.write(", ");
 						}
@@ -230,5 +245,6 @@ class Generator {
 	public static void main(String[] args) {
 		Generator program = new Generator();
 		program.run();
+                System.out.println("Done!");
 	}
 } 
