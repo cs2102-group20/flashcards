@@ -1,0 +1,3 @@
+spool setid.txt
+select max(set_id) from cardSet;
+spool off;

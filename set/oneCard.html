@@ -20,18 +20,18 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body onload="editSta=0;preloadImages();">
 
   	<script type="text/javascript">
 		//Preloading images	
+		function preloadImages(){
 			fileNames = [
 					"../images/previous.png",
 					"../images/next.png"
 			];
 			for (i=0;i<fileNames.length;i++) { var p=new Image(); p.src=fileNames[i];}
-	
+		}
 		//webpage display logic
-		var editSta=0;
 		
 		function editCard(){
 			if(editSta==1){//edit mode

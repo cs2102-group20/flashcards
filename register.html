@@ -20,16 +20,37 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body onload="preloadImages();">
 
   	<script type="text/javascript">
 		//Preloading images	
+		function preloadImages(){
 			fileNames = [
 			];
-			for (i=0;i<fileNames.length;i++) { var p=new Image(); p.src=fileNames[i];}
+			for (i=0;i<fileNames.length;i++) { var p=new Image(); p.src=fileNames[i];
+		}
 	
 		//webpage display logic
-		function validate(){
+		function hey(){
+			alert("hhhhhhh");
+		}
+		function validatePw(){
+			alert("working");
+			var tmp=document.getElementById("pw").value;
+			if(tmp.length<8 || tmp.length>20){
+				document.getElementById("pwMsg").innerHTML="<font size='2' color='red'>The password should comprise 8-20 characters. Please try again</font>";
+			}else{
+				var pwOkay=true;
+				for (int i=0;i<tmp.length && pwOkay;i++){
+					if( tmp.charCodeAt(i) < 48 || (tmp.charCodeAt(i) > 57 && tmp.charCodeAt(i) < 65) || (tmp.charCodeAt(i) >90 && tmp.charCodeAt(i) < 97) || tmp.charCodeAt(i) >122){
+						document.getElementById("pwMsg").innerHTML="<font size='2' color='red'>The password should not contain special characters or spaces. Please try again</font>";
+						pwOkay=false;
+					}
+				}
+				if(pwOkay)document.getElementById("pwMsg").innerHTML="&nbsp;";
+			}
+		}
+		function validateConfirmPw(){
 			if((document.getElementById("pwConfirm").value)!=(document.getElementById("pw").value)) {
 				document.getElementById("confirmPwMsg").innerHTML="<font size='3' color='red'>The passwords do not match. Please try again</font>";
 			}else{
@@ -70,18 +91,22 @@
 			<h2>Register</h2>
         <form>
             <div  class="regForm">
-			Email: 
-              <input type="text" placeholder="Email" class="form-control" id="email">
+					Email: 
+					<input type="text" placeholder="Email" class="form-control" id="email">
             </div>
-			<br /><br />
+				<br />
             <div  class="regForm">
-			Password:
-              <input type="password" placeholder="Password" class="form-control" id="pw">
+					Password: <br />
+					<font size='1'>The password should comprise 8-20 characters, including capital or lowercase letters and digits. Special characters or spaces are not accepted.</font><br />
+              <input type="password" placeholder="Password" class="form-control" id="pw" onchange="hey();validatePw();">
             </div>
+			<br />
             <div  class="regForm">
-			<br /><br />
+						<div id="pwMsg">&nbsp;
+				</div>
+			<br />
 			Confirm password:
-              <input type="password" placeholder="Password" class="form-control" id="pwConfirm" onchange="validate();">
+              <input type="password" placeholder="Password" class="form-control" id="pwConfirm" onchange="alert('hey');validateConfirmPw();">
             </div>			
 			<br />
 			<div id="confirmPwMsg">&nbsp;

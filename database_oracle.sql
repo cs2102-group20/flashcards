@@ -1,10 +1,10 @@
 create table users(
   username varchar(20) primary key,
-  pw varchar(20) NOT NULL CHECK (LENGTH(pw)>8),
+  pw varchar(20) NOT NULL CHECK (LENGTH(pw)>=8),
   isAdmin CHAR(1) NOT NULL CHECK (isAdmin = 'Y' OR isAdmin = 'N')
   );
 
-create table card_set(
+create table cardSet(
   set_id integer primary key,
   title varchar(50),
   description varchar(200),
@@ -19,7 +19,7 @@ create sequence set_id_seq
   nomaxvalue;
 
 create trigger set_id_trigger
-  before insert on card_set
+  before insert on cardSet
   for each row
   begin
   select set_id_seq.nextval into :new.set_id from dual;
@@ -30,7 +30,7 @@ create table card(
   card_id integer primary key,
   word varchar(30),
   translation varchar(60),
-  set_id integer references card_set(set_id) on delete cascade);
+  set_id integer references cardSet(set_id) on delete cascade);
   
 create sequence card_id_seq
   start with 1
@@ -47,5 +47,5 @@ create trigger card_id_trigger
 
 create table favoriteSet(
   user_id varchar(20) references users(username),
-  set_id integer references card_set(set_id) on delete cascade,
+  set_id integer references cardSet(set_id) on delete cascade,
   primary key(user_id,set_id));
