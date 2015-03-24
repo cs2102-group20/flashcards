@@ -6,7 +6,7 @@ create table users(
 
 create table cardSet(
   set_id integer primary key,
-  title varchar(50),
+  title varchar(50) NOT NULL,
   description varchar(200),
   language_1 varchar(20),
   language_2 varchar(20),

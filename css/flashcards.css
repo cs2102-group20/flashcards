@@ -44,3 +44,46 @@ body {
   resize: none;
   padding: 0px; 
 }
+.createCardTA{
+  border: none;
+  resize: none;
+}
+.jumbotron_colored {
+  padding: 30px 15px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #ddd;
+}
+.jumbotron_colored h1,
+.jumbotron_colored .h1 {
+  color: inherit;
+}
+.jumbotron_colored p {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 200;
+}
+.jumbotron_colored > hr {
+  border-top-color: #d5d5d5;
+}
+.container .jumbotron_colored,
+.container-fluid .jumbotron_colored {
+  border-radius: 6px;
+}
+.jumbotron_colored .container {
+  max-width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .jumbotron_colored {
+    padding: 48px 0;
+  }
+  .container .jumbotron_colored,
+  .container-fluid .jumbotron_colored {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+  .jumbotron_colored h1,
+  .jumbotron_colored .h1 {
+    font-size: 63px;
+  }
+}
