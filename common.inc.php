@@ -8,11 +8,11 @@ if ($mysqli->connect_errno) {
     exit(1);
 }
 
-function check_login($user, $pass) {
+function check_login($user, $hash) {
     if ($stmt = $mysqli->prepare(
         "SELECT id, username, is_admin FROM users WHERE username = ? AND password = ?")) {
 
-        $stmt->bind_param("ss", $user, $pass);
+        $stmt->bind_param("ss", $user, $hash);
         $stmt->execute();
         $stmt->bind_result($user_id, $user_name, $user_is_admin);
 
@@ -34,12 +34,13 @@ function check_login($user, $pass) {
 }
 
 if (isset($_POST['login'])) {
-    if (check_login($_POST['user'], $_POST['pass'])) {
+    $hash = hash('sha256', $_POST['pass']);
+    if (check_login($_POST['user'], $hash)) {
         setcookie('user', $_POST['user']);
-        setcookie('pass', $_POST['pass']);
+        setcookie('hash', $hash);
     }
 } elseif (isset($_COOKIE['user'])) {
-    check_login($_COOKIE['user'], $_COOKIE['pass']);
+    check_login($_COOKIE['user'], $_COOKIE['hash']);
 } else {
     define('USER_IS_LOGGED_IN', false);
 }
