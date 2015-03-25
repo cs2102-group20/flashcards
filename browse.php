@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php require_once 'common.inc.php'; ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -34,14 +35,14 @@
           <a class="navbar-brand" href="#">Language Flashcards</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
+          <form class="navbar-form navbar-right" method="post">
             <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
+              <input name="user" type="text" placeholder="Username" class="form-control">
             </div>
             <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
+              <input name="pass" type="password" placeholder="Password" class="form-control">
             </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
+            <button name="login" type="submit" class="btn btn-success">Sign in</button>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
@@ -77,7 +78,7 @@
                 <option selected>Language G</option>
               </select>
             </div>
-            <button class="btn btn-default" type="submit">Apply</button>
+            <button class="btn btn-default" name="filter" type="submit">Apply</button>
           </form>
         </div>
 
