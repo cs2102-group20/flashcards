@@ -10,7 +10,7 @@ if ($mysqli->connect_errno) {
 
 function check_login($user, $hash) {
     if ($stmt = $mysqli->prepare(
-        "SELECT id, username, is_admin FROM users WHERE username = ? AND password = ?")) {
+        'SELECT id, username, is_admin FROM users WHERE username = ? AND password = ?')) {
 
         $stmt->bind_param("ss", $user, $hash);
         $stmt->execute();
@@ -39,6 +39,10 @@ if (isset($_POST['login'])) {
         setcookie('user', $_POST['user']);
         setcookie('hash', $hash);
     }
+} elseif (isset($_POST['logout'])) {
+    setcookie('user', '', time() - 86400);
+    setcookie('hash', '', time() - 86400);
+    define('USER_IS_LOGGED_IN', false);
 } elseif (isset($_COOKIE['user'])) {
     check_login($_COOKIE['user'], $_COOKIE['hash']);
 } else {
