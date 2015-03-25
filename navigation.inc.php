@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Language Flashcards</a>
+      <a class="navbar-brand" href=".">Language Flashcards</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -24,7 +24,7 @@
           <button name="logout" type="submit" class="btn btn-default">Sign out</button>
         </form>
         <p class="navbar-text navbar-right">Signed in as
-          <a href="users?name=<?php echo USER_NAME; ?>"><?php echo USER_NAME; ?></a>
+          <a href="user?name=<?php echo USER_NAME; ?>"><?php echo USER_NAME; ?></a>
         </p>
       <?php } else { ?>
         <form class="navbar-form navbar-right" method="post">
