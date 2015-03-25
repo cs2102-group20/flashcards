@@ -8,7 +8,7 @@ if ($mysqli->connect_errno) {
     exit(1);
 }
 
-function check_login($user, $hash) {
+function check_login($mysqli, $user, $hash) {
     if ($stmt = $mysqli->prepare(
         'SELECT id, username, is_admin FROM users WHERE username = ? AND password = ?')) {
 
@@ -35,7 +35,7 @@ function check_login($user, $hash) {
 
 if (isset($_POST['login'])) {
     $hash = hash('sha256', $_POST['pass']);
-    if (check_login($_POST['user'], $hash)) {
+    if (check_login($mysqli, $_POST['user'], $hash)) {
         setcookie('user', $_POST['user']);
         setcookie('hash', $hash);
     }
@@ -44,7 +44,7 @@ if (isset($_POST['login'])) {
     setcookie('hash', '', time() - 86400);
     define('USER_IS_LOGGED_IN', false);
 } elseif (isset($_COOKIE['user'])) {
-    check_login($_COOKIE['user'], $_COOKIE['hash']);
+    check_login($mysqli, $_COOKIE['user'], $_COOKIE['hash']);
 } else {
     define('USER_IS_LOGGED_IN', false);
 }
