@@ -20,40 +20,10 @@
     <![endif]-->
   </head>
 
-  <body onload="editSta=0;preloadImages();">
+  <body onload="initialize(); preloadImages();">
   
-	<script type="text/javascript">
-		//Preloading images	
-		function preloadImages(){
-			fileNames = [
-					"../images/deleteSign.png"
-			];
-			for (i=0;i<fileNames.length;i++) { var p=new Image(); p.src=fileNames[i];}
-		}
-		//webpage display logic
-		function editSet(){
-			if(editSta==1){//edit mode
-			 document.getElementById("editBtn").style.background='#FF0000';
-			 var tmp= document.getElementsByClassName("deleteSign");
-			 for(i=0;i<tmp.length;i++){
-				tmp[i].innerHTML="<img src='../images/deleteSign.png'  width='10' height='10' id = \'deleteImg"+i+"\' onclick='deleteDialog();' />";
-			 }
-			}else{
-			var tmp= document.getElementsByClassName("deleteSign");
-			 for(i=0;i<tmp.length;i++){
-				tmp[i].innerHTML="&nbsp;";
-			 }
-			 document.getElementById("editBtn").style.background='#FFFFFF';
-			}
-		}
-		function deleteDialog(){
-			if (confirm("You are about to delete one entry.") == true) {
-				deleteEntry();
-			} 
-		}
-		function deleteEntry(){
+	<script type="text/javascript" src="overview.js">
 		
-		}
 	</script>
 	
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -97,28 +67,52 @@
 
 
         <div class="col-md-10">
-          <font size="6">Cards</font>
-		  <div  class="right_inline"> 
+			<div  class="right_inline"> 
 			<button class="btn btn-default" id="editBtn" type="button" style="background-color:#FFFFFF" onclick="editSta=1-editSta;editSet();">Edit</button>
-		  </div>
+		   </div>
+		   </div>
+		  <div class="col-md-10">
+			<div id="titleDiv">title</div><br />
+			<div id="descriptionDiv">Description</div> <br />
+
           <table border="0">
-            <tr>
-				<td align="center" width="900">
-              <p>word</p>
+		      <tr>
+				<td align="center"  width="300" id='langWordCell'>
+              <font size='2'>Word language:</font>
+              <font size='2'>getWordLanguage</font>			  
 				</td>
-				<td class="deleteSign" align="center" width="30">&nbsp;</td>
+				<td align="center"  width="600" id='langTranslationCell'>
+              <font size='2'>Translation language:</font>
+              <font size='2'>getTranslationLanguage</font>		
+				</td>
+				<td align="center" width="30">&nbsp;</td>
             </tr>
             <tr>
 				<td align="center">
               <p>word</p>
 				</td>
-				<td class="deleteSign" align="center" width="30">&nbsp;</td>
+				<td align="center"  width="600">
+              <p>Translation</p>
+				</td>
+				<td class="deleteSign" align="center">&nbsp;</td>
             </tr>
             <tr>
 				<td align="center">
               <p>word</p>
 				</td>
-				<td class="deleteSign" align="center" width="30">&nbsp;</td>
+				<td align="center"  width="600">
+              <p>Translation</p>
+				</td>
+				<td class="deleteSign" align="center">&nbsp;</td>
+            </tr>
+            <tr>
+				<td align="center">
+              <p>word</p>
+				</td>
+				<td align="center"  width="600">
+              <p>Translation</p>
+				</td>
+				<td class="deleteSign" align="center">&nbsp;</td>
             </tr>
           </table>
 

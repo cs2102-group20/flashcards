@@ -20,7 +20,7 @@
     <![endif]-->
   </head>
 
-  <body onload="editSta=0;preloadImages(); createRows(5);">
+  <body onload="initialize(); preloadImages(); createRows();">
 
   	<script type="text/javascript" src="createSet.js">
 
@@ -63,18 +63,16 @@
 		Description<br />
 		<font size='1'>Optional. The description should comprise 1-50 charaters.</font>
 		<br />
-		<textarea id="title" class="createCardTA" rows='3' cols='100'></textarea>
+		<textarea id="description" class="createCardTA" rows='3' cols='100'></textarea>
 		<br />		
+		<br />
 			<table id="cardTable">
 				
 			</table>
-			<input type="image" src="images/addBtn.png" style="width: 30px; height: 30px" onclick="addEntry();"/> 
+			<input type="image" src="images/addBtn.png" style="width: 30px; height: 30px" onclick="addEntry();return false;"/> 
 		</form>
     </div>
-	  
-      <div class="row" align="center">
-			<input type="image" src="../images/previous.png" style="width: 30px; height: 30px" /> <input type="image" src="../images/next.png" style="width: 30px; height: 30px"/>
-		</div>
+
 		
       <hr>
 

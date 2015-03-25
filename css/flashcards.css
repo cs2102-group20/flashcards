@@ -87,3 +87,6 @@ body {
     font-size: 63px;
   }
 }
+.editSetTA{
+  resize: none;
+}
