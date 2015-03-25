@@ -20,12 +20,12 @@
         <?php } ?>
       </ul>
       <?php if (USER_IS_LOGGED_IN) { ?>
-        <p class="navbar-text navbar-right">Signed in as
-          <a href="users?name=<?php echo USER_NAME; ?>"><?php echo USER_NAME; ?></a>
-        </p>
         <form class="navbar-form navbar-right" method="post">
           <button name="logout" type="submit" class="btn btn-default">Sign out</button>
         </form>
+        <p class="navbar-text navbar-right">Signed in as
+          <a href="users?name=<?php echo USER_NAME; ?>"><?php echo USER_NAME; ?></a>
+        </p>
       <?php } else { ?>
         <form class="navbar-form navbar-right" method="post">
           <div class="form-group">
