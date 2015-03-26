@@ -26,7 +26,7 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
           <h2>Filter</h2>
           <form>
             <div class="form-group">
@@ -58,7 +58,7 @@
         </div>
 
 
-        <div class="col-md-10">
+        <div class="col-md-9">
           <h2>Results</h2>
 
           <ul class="list-group">
