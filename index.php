@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php require_once 'common.inc.php'; ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -21,38 +22,13 @@
   </head>
 
   <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Language Flashcards</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
-
+    <?php require 'navigation.inc.php'; ?>
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
         <h1>Welcome to Language Flashcards!</h1>
         <p>Registered users have created many flashcard sets for practicing languages.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Browse flashcards &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" href="browse" role="button">Browse flashcards &raquo;</a></p>
       </div>
     </div>
 
@@ -61,13 +37,18 @@
       <div class="row">
         <div class="col-md-6">
           <h2>Want to make your own?</h2>
-          <p>This website wouldn't be possible without the efforts of our users, who also happen to be the developers. You too, can join them, for only a low fee of $599/month!</p>
-          <p><a class="btn btn-default" href="#" role="button">Register &raquo;</a></p>
+          <?php if (USER_IS_LOGGED_IN) { ?>
+            <p>This website wouldn't be possible without the efforts of our users, who also happen to be the developers. You too, can join them, for only a low fee of $599/month!</p>
+            <p><a class="btn btn-default" href="register" role="button">Register &raquo;</a></p>
+          <?php } else { ?>
+            <p>This website wouldn't be possible without the efforts of our users, who also happen to be the developers. Please help by creating your own flashcard sets!</p>
+            <p><a class="btn btn-default" href="create" role="button">Create &raquo;</a></p>
+          <?php } ?>
         </div>
         <div class="col-md-6">
           <h2>Don't know what to practice?</h2>
           <p>Sometimes you just want to learn <em>something</em>, but you have no idea what. This button's for you.</p>
-          <p><a class="btn btn-default" href="#" role="button">Random flashcards &raquo;</a></p>
+          <p><a class="btn btn-default" href="random" role="button">Random flashcards &raquo;</a></p>
         </div>
       </div>
 
