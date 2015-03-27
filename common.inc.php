@@ -7,6 +7,10 @@ if ($mysqli->connect_errno) {
     echo "DB error: " . $mysqli->connect_error;
     exit(1);
 }
+if (!$mysqli->set_charset('utf8')) {
+    echo "Unable to set charset.";
+    exit(1);
+}
 
 function check_login($mysqli, $user, $hash) {
     if ($stmt = $mysqli->prepare(
