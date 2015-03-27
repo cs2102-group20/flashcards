@@ -38,26 +38,22 @@ foreach ($languages as $language) {
           <form>
             <div class="form-group">
               <label for="filter-title">Title</label>
-              <input id="filter-title" name="title" type="text" class="form-control" placeholder="Keywords">
+              <input id="filter-title" name="title" type="text" class="form-control" placeholder="Partial title" value="<?php echo $_GET['title']; ?>">
             </div>
             <div class="form-group">
               <label for="filter-description">Description</label>
-              <input id="filter-description" name="description" type="text" class="form-control" placeholder="Keywords">
+              <input id="filter-description" name="description" type="text" class="form-control" placeholder="Partial description" value="<?php echo $_GET['description']; ?>">
             </div>
             <div class="form-group">
               <label for="filter-creator">Creator</label>
-              <input id="filter-creator" name="creator" type="text" class="form-control" placeholder="Username">
+              <input id="filter-creator" name="creator" type="text" class="form-control" placeholder="Username" value="<?php echo $_GET['creator']; ?>">
             </div>
             <div class="form-group">
               <label for="filter-languages">Languages</label>
-              <select id="filter-languages" name="languages" multiple class="form-control">
-                <option selected>Language A</option>
-                <option selected>Language B</option>
-                <option selected>Language C</option>
-                <option selected>Language D</option>
-                <option selected>Language E</option>
-                <option selected>Language F</option>
-                <option selected>Language G</option>
+              <select id="filter-languages" name="languages[]" multiple class="form-control">
+                <?php foreach ($languages as $language) { ?>
+                  <option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo $language['name']; ?></option>
+                <?php } ?>
               </select>
             </div>
             <button class="btn btn-default" name="filter" type="submit">Apply</button>
