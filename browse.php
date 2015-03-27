@@ -24,7 +24,7 @@
 <?php
 $languages = get_languages($mysqli);
 foreach ($languages as $key => $value) {
-  $language[$key]['selected'] = !isset($_GET['languages']) || in_array($value['id'], $_GET['languages']);
+  $languages[$key]['selected'] = !isset($_GET['languages']) || in_array($value['id'], $_GET['languages']);
 }
 ?>
 
