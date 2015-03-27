@@ -21,6 +21,13 @@
     <![endif]-->
   </head>
 
+<?php
+$languages = get_languages($mysqli);
+foreach ($languages as $language) {
+  $language['selected'] = !isset($_GET['languages']) || in_array($language['id'], $_GET['languages']);
+}
+?>
+
   <body>
     <?php require 'navigation.inc.php'; ?>
     <div class="container">

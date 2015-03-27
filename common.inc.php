@@ -33,6 +33,16 @@ function check_login($mysqli, $user, $hash) {
 
 }
 
+function get_languages($mysqli) {
+    if ($result = $mysqli->query('SELECT id, name FROM languages')) {
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        echo "Unable to fetch languages.";
+        exit(1);
+    }
+
+}
+
 if (isset($_POST['login'])) {
     $hash = hash('sha256', $_POST['pass']);
     if (check_login($mysqli, $_POST['user'], $hash)) {
