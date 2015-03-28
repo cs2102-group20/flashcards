@@ -31,7 +31,7 @@ function search_sets($mysqli, $title, $description, $creator, $languages) {
   // guaranteed to be a subset of integers, should be safe to interpolate into the query
   $language_ids = implode(',', array_map(function ($language) { return ($language['selected']) ? $language['id'] : 'null'; }, $languages));
   $query = 'SELECT s.id, s.title, s.description, l1.name, l2.name, u.username FROM card_sets s, languages l1, languages l2, users u '
-    . 'WHERE s.user_id = user.id AND s.language1_id = l1.id AND s.language2_id = l2.id '
+    . 'WHERE s.user_id = u.id AND s.language1_id = l1.id AND s.language2_id = l2.id '
     . 'AND s.title LIKE CONCAT("%",?,"%") AND s.description LIKE CONCAT("%",?,"%") '
     . 'AND (COALESCE(?, "") = "" OR u.username = ?) AND l1.name IN (' . $language_ids . ') AND l2.name in (' . $language_ids . ');';
 
@@ -82,7 +82,7 @@ $search_results = search_sets($mysqli, $_GET['title'], $_GET['description'], $_G
 
 
         <div class="col-md-9">
-          <h2>Results (<?php echo count(search_results); ?>)</h2>
+          <h2>Results (<?php echo count($search_results); ?>)</h2>
 
           <ul class="list-group">
             <li class="list-group-item">
