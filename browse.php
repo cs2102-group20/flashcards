@@ -85,21 +85,14 @@ $search_results = search_sets($mysqli, $_GET['title'], $_GET['description'], $_G
           <h2>Results (<?php echo count($search_results); ?>)</h2>
 
           <ul class="list-group">
-            <li class="list-group-item">
-              <h4>Set Title</h4>
-              <p>By username</p>
-              <p>Set description</p>
-            </li>
-            <li class="list-group-item">
-              <h4>Set Title</h4>
-              <p>By username</p>
-              <p>Set description</p>
-            </li>
-            <li class="list-group-item">
-              <h4>Set Title</h4>
-              <p>By username</p>
-              <p>Set description</p>
-            </li>
+            <?php foreach ($search_results as $search_result) { ?>
+              <li class="list-group-item">
+                <h4><a href="set/overview?id=<?php echo $search_result['s.id']; ?>"><?php echo htmlspecialchars($search_result['s.title']); ?></a></h4>
+                <p><?php echo $search_result['l1.name'] . '/' . $search_result['l2.name']; ?></p>
+                <p>By <a href="user?name=<?php echo $search_result['u.username']; ?>"><?php echo $search_result['u.username']; ?></a></p>
+                <p><?php echo htmlspecialchars($search_result['s.description']); ?></p>
+              </li>
+            <?php } ?>
           </ul>
         </div>
       </div>
