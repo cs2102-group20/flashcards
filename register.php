@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php require_once 'common.inc.php'; ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -19,10 +20,17 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
-  <body onload="preloadImages();">
+  
+  
+  <body onload="initialize(); preloadImages();">
 
   	<script type="text/javascript">
+		//initialization
+		function initialize(){
+			var validUn=false;
+			var validPw=false;
+			var validConfirmPw=false;
+		}
 		//Preloading images	
 		function preloadImages(){
 			fileNames = [
@@ -30,12 +38,40 @@
 			for (i=0;i<fileNames.length;i++) { var p=new Image(); p.src=fileNames[i];}
 		}
 		//webpage display logic
+		/*
 		function validateEmail(){
-			//RFC5322 standard
 			var tmp=document.getElementById("email").value;
 			var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;  //reference: http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
-			if(re.test(tmp))document.getElementById("emailMsg").innerHTML="&nbsp;";
-			else document.getElementById("emailMsg").innerHTML="<font size='2' color='red'>Invalid. Please try again</font>";
+			if(re.test(tmp)){
+				document.getElementById("emailMsg").innerHTML="&nbsp;";
+				validEmail=true;
+			}
+			else {
+				document.getElementById("emailMsg").innerHTML="<font size='2' color='red'>Invalid. Please try again</font>";
+				validEmail=false;
+			}
+		}
+		*/
+		function validateUsername(){
+			var tmp=document.getElementById("username").value;
+			if(tmp.length<1 || tmp.length>20){
+				document.getElementById("usernameMsg").innerHTML="<font size='2' color='red'>The username should comprise 1-20 characters. Please try again</font>";
+			}
+			else{
+				var unOkay=true;
+				for (var i=0;i<tmp.length && unOkay;i++){
+					if( tmp.charCodeAt(i) < 48 || (tmp.charCodeAt(i) > 57 && tmp.charCodeAt(i) < 65) || (tmp.charCodeAt(i) >90 && tmp.charCodeAt(i) < 97) || tmp.charCodeAt(i) >122){
+						document.getElementById("usernameMsg").innerHTML="<font size='2' color='red'>The username should not contain special characters or spaces. Please try again</font>";
+						unOkay=false;
+						validUn=false;
+					}
+				}
+				if(unOkay){
+					document.getElementById("usernameMsg").innerHTML="&nbsp;";
+					validUn=true;
+				}
+			}
+		
 		}
 		function validatePw(){
 			var tmp=document.getElementById("pw").value;
@@ -48,57 +84,43 @@
 					if( tmp.charCodeAt(i) < 48 || (tmp.charCodeAt(i) > 57 && tmp.charCodeAt(i) < 65) || (tmp.charCodeAt(i) >90 && tmp.charCodeAt(i) < 97) || tmp.charCodeAt(i) >122){
 						document.getElementById("pwMsg").innerHTML="<font size='2' color='red'>The password should not contain special characters or spaces. Please try again</font>";
 						pwOkay=false;
+						validPw=false;
 					}
 				}
-				if(pwOkay)document.getElementById("pwMsg").innerHTML="&nbsp;";
+				if(pwOkay){
+					document.getElementById("pwMsg").innerHTML="&nbsp;";
+					validPw=true;
+				}
 			}
 		}
 		function validateConfirmPw(){
 			if((document.getElementById("pwConfirm").value)!=(document.getElementById("pw").value)) {
 				document.getElementById("confirmPwMsg").innerHTML="<font size='2' color='red'>The passwords do not match. Please try again</font>";
+				validConfirmPw=false;
 			}else{
 				document.getElementById("confirmPwMsg").innerHTML="&nbsp;";
+				validConfirmPw=true;
 			}
 		}
+
 	</script>
   
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Language Flashcards</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
+    <?php require 'navigation.inc.php'; ?>
 
     <div class="container">
       <!-- Example row of columns -->
 	  <div class="jumbotron" align="center" >
-	  <form>
+	  <form method="post" onsubmit="if (!(validUn && validPw && validConfirmPw)) {alert('Some fields are invalid. Please try again.'); return false;}" action="registerForm.php">
       <div class="smallContainer">
 			<h2>Register</h2>
         
             <div  class="regForm">
-					Email: 
-					<input type="text" placeholder="Email" class="form-control" id="email" onchange="validateEmail();">
+<!--					Email: 
+					<input type="text" placeholder="Email" class="form-control" id="email" onchange="validateEmail();"> -->
+					Username:
+					<input type="text" placeholder="Username" class="form-control" id="username" onchange="validateUsername();">
             </div>
-				<div id="emailMsg">&nbsp;
+				<div id="usernameMsg">&nbsp;
 				</div>
 				<br />
             <div  class="regForm">
@@ -119,7 +141,7 @@
 			</div>
       </div>
 	  <br />
-     <button type="submit" class="btn btn-success">Register!</button>
+     <button type="submit" class="btn btn-success" >Register!</button>
 	  </form>
     </div>
 		
