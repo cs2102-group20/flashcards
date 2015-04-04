@@ -47,6 +47,34 @@ function get_languages($mysqli) {
 
 }
 
+function get_set($mysqli, $set) {
+    if ($stmt = $mysqli->prepare(
+        'SELECT s.title, s.description, l1.name, l2.name, u.username, u.id '
+        . 'FROM card_sets s, languages l1, languages l2, users u '
+        . 'WHERE s.user_id = u.id AND s.language1_id = l1.id AND s.language2_id = l2.id AND s.id = ?')) {
+
+        $stmt->bind_param("i", $set);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    } else {
+        echo "Unable to fetch set.";
+        exit(1);
+    }
+
+}
+
+function get_cards($mysqli, $set) {
+    if ($stmt = $mysqli->prepare('SELECT word1, word2 FROM cards WHERE set_id = ?')) {
+        $stmt->bind_param("i", $set);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    } else {
+        echo "Unable to fetch cards.";
+        exit(1);
+    }
+
+}
+
 if (isset($_POST['login'])) {
     $hash = hash('sha256', $_POST['pass']);
     if (check_login($mysqli, $_POST['user'], $hash)) {
