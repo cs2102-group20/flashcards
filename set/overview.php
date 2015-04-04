@@ -47,8 +47,8 @@ $languages = get_languages($mysqli);
               <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
               <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
             </div>
-            <input class="setedit-field h2" name="title" readonly placeholder="Title" value="Title" required>
-            <textarea class="setedit-field lead" name="description" readonly rows="3">Description</textarea>
+            <input class="setedit-field h2" id="setedit-title" name="title" readonly placeholder="Title" value="Title" required>
+            <textarea class="setedit-field lead" id="setedit-description" name="description" readonly rows="3">Description</textarea>
 
             <table class="table" id="setedit-words">
               <tr>
