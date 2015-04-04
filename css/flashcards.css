@@ -90,3 +90,21 @@ body {
 .editSetTA{
   resize: none;
 }
+
+.setedit-enabled .setedit-hidden,
+.setedit-disabled .setedit-visible,
+tr:last-child .setedit-delete {
+  display: none;
+}
+.setedit-disabled textarea {
+  width: 100%;
+}
+.setedit-disabled .setedit-field {
+  border: none;
+  display: block;
+  outline: none;
+  resize: none;
+}
+.setedit-delete {
+  line-height: inherit;
+}

@@ -20,98 +20,67 @@
     <![endif]-->
   </head>
 
-  <body onload="initialize(); preloadImages();">
-  
-	<script type="text/javascript" src="overview.js">
-		
-	</script>
-    <?php require '../navigation.inc.php'; ?>
+<?php
+$languages = get_languages($mysqli);
+?>
 
+  <body>
+    <?php require '../navigation.inc.php'; ?>
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-3">
-          <form>
-            <div class="form-group">
-              <label for="filter-title">Filter Cards</label>
-              <input id="filter-title" name="title" type="text" class="form-control" placeholder="Words">
-            </div>
-          </form>
+          <h2>Filter Cards</h2>
+          <div class="form-group">
+            <label for="filter-title">Word</label>
+            <input id="filter-title" name="title" type="text" class="form-control" placeholder="Word">
+          </div>
         </div>
 
 
         <div class="col-md-9">
-			<div  class="right_inline"> 
-			<button class="btn btn-default" id="editBtn" type="button" style="background-color:#FFFFFF" onclick="editSta=1-editSta;editSet();">Edit</button>
-		   </div>
-			<div id="titleDiv">title</div><br />
-			<div id="descriptionDiv">Description</div> <br />
+          <form class="setedit setedit-disabled" method="post">
+            <div class="pull-right">
+              <button class="btn btn-default setedit-hidden" id="setedit-edit" type="button">Edit</button>
+              <button class="btn btn-danger setedit-hidden" name="delete" type="submit">Delete</button>
+              <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
+              <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
+            </div>
+            <input class="setedit-field h2" name="title" readonly placeholder="Title" value="Title" required>
+            <textarea class="setedit-field lead" name="description" readonly rows="3">Description</textarea>
 
-          <table border="0">
-		      <tr>
-				<td align="center"  width="300" id='langWordCell'>
-              <font size='2'>Word language:</font>
-              <font size='2'>getWordLanguage</font>			  
-				</td>
-				<td align="center"  width="600" id='langTranslationCell'>
-              <font size='2'>Translation language:</font>
-              <font size='2'>getTranslationLanguage</font>		
-				</td>
-				<td align="center" width="30">&nbsp;</td>
-            </tr>
-            <tr>
-				<td align="center">
-              <p>word</p>
-				</td>
-				<td align="center"  width="600">
-              <p>Translation</p>
-				</td>
-				<td class="deleteSign" align="center">&nbsp;</td>
-            </tr>
-            <tr>
-				<td align="center">
-              <p>word</p>
-				</td>
-				<td align="center"  width="600">
-              <p>Translation</p>
-				</td>
-				<td class="deleteSign" align="center">&nbsp;</td>
-            </tr>
-            <tr>
-				<td align="center">
-              <p>word</p>
-				</td>
-				<td align="center"  width="600">
-              <p>Translation</p>
-				</td>
-				<td class="deleteSign" align="center">&nbsp;</td>
-            </tr>
-          </table>
-
-          <nav>
-            <ul class="pagination">
-              <li>
-                <a href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li>
-                <a href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-
+            <table class="table" id="setedit-words">
+              <tr>
+                <th id='langWordCell'>
+                  Word in $lang1      
+                </th>
+                <th id='langTranslationCell'>
+                  Word in $lang2
+                </th>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
+                  <input class="setedit-field" name="word1[]" readonly value="Word1" required>
+                </td>
+                <td>
+                  <input class="setedit-field" name="word2[]" readonly value="Word2" required>
+                </td>
+                <td><button class="close setedit-visible setedit-delete" type="button" aria-label="Delete"><span aria-hidden="true">&times;</span></button></td>
+              </tr>
+              <tr>
+                <td>
+                  <input class="setedit-field" name="word1[]" readonly value="">
+                </td>
+                <td>
+                  <input class="setedit-field" name="word2[]" readonly value="">
+                </td>
+                <td><button class="close setedit-visible setedit-delete" type="button" aria-label="Delete"><span aria-hidden="true">&times;</span></button></td>
+              </tr>
+            </table>
+          </form>
         </div>
       </div>
-
-      <hr>
 
       <footer>
         <p>&copy; Company 2014</p>
@@ -124,5 +93,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="overview.js" defer></script>
+    <script>var languages = "test"/*php languages*/;</script>
   </body>
 </html>
