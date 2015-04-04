@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php require_once 'common.inc.php'; ?>
+<?php require_once '../common.inc.php'; ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
