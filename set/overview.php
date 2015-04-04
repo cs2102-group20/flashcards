@@ -25,53 +25,25 @@
 	<script type="text/javascript" src="overview.js">
 		
 	</script>
-	
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Language Flashcards</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
+    <?php require '../navigation.inc.php'; ?>
 
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-2">
-			<p>&nbsp;</p>
+        <div class="col-md-3">
           <form>
             <div class="form-group">
-              <label for="filter-title">Search</label>
-              <input id="filter-title" name="title" type="text" class="form-control" placeholder="Keywords">
+              <label for="filter-title">Filter Cards</label>
+              <input id="filter-title" name="title" type="text" class="form-control" placeholder="Words">
             </div>
-            <button class="btn btn-default" type="submit">Apply</button>
           </form>
         </div>
 
 
-        <div class="col-md-10">
+        <div class="col-md-9">
 			<div  class="right_inline"> 
 			<button class="btn btn-default" id="editBtn" type="button" style="background-color:#FFFFFF" onclick="editSta=1-editSta;editSet();">Edit</button>
 		   </div>
-		   </div>
-		  <div class="col-md-10">
 			<div id="titleDiv">title</div><br />
 			<div id="descriptionDiv">Description</div> <br />
 
