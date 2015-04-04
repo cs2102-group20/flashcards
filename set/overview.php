@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php require_once 'common.inc.php'; ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -94,6 +95,6 @@ $languages = get_languages($mysqli);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="overview.js" defer></script>
-    <script>var languages = "test"/*php languages*/;</script>
+    <script>var languages = <?php echo json_encode($languages); ?>;</script>
   </body>
 </html>
