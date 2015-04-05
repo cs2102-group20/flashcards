@@ -26,9 +26,9 @@ $languages = get_languages($mysqli);
 $set = get_set($mysqli, $_GET['id']);
 $cards = get_cards($mysqli, $_GET['id']);
 
-if (isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u.id'] || USER_IS_ADMIN)) {
+if (isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u_id'] || USER_IS_ADMIN)) {
   if (isset($_POST['delete'])) {
-    if (!$mysqli->query('DELETE FROM card_sets WHERE id = ' . $set['s.id'])) {
+    if (!$mysqli->query('DELETE FROM card_sets WHERE id = ' . $set['id'])) {
       echo 'Unable to delete set.';
       exit(1);
     }
@@ -39,15 +39,15 @@ if (isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u.id'] || USER_IS_ADMI
 
       $mysqli->autocommit(false);
 
-      $updatesetstmt->bind_param("ssiii", $_POST['title'], $_POST['description'], $_POST['language1'], $_POST['language2'], $set['s.id']);
+      $updatesetstmt->bind_param("ssiii", $_POST['title'], $_POST['description'], $_POST['language1'], $_POST['language2'], $set['id']);
       $updatesetstmt->execute();
-      $deletecardstmt->bind_param("i", $set['s.id']);
+      $deletecardstmt->bind_param("i", $set['id']);
       $deletecardstmt->execute();
 
       $cardcnt = min(count($_POST['word1']), count($_POST['word2']));
       for ($i = 0; $i < $cardcnt; $i++) {
         if (strlen($_POST['word1'][$i]) > 0 && strlen($_POST['word2'][$i]) > 0) {
-          $insertcardstmt->bind_param("ssi", $_POST['word1'][$i], $_POST['word2'][$i], $set['s.id']);
+          $insertcardstmt->bind_param("ssi", $_POST['word1'][$i], $_POST['word2'][$i], $set['id']);
           $insertcardstmt->execute();
         }
       }
@@ -83,26 +83,26 @@ if (isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u.id'] || USER_IS_ADMI
               <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
               <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
             </div>
-            <h2 class="setedit-hidden"><?php echo htmlspecialchars($set['s.title']); ?></h2>
-            <input class="form-control setedit-visible" name="title" placeholder="Title" value="<?php echo htmlspecialchars($set['s.title']); ?>" required>
-            <p class="lead setedit-hidden"><?php echo htmlspecialchars($set['s.description']); ?></p>
-            <textarea class="form-control setedit-visible" name="description" placeholder="Description" rows="3"><?php echo htmlspecialchars($set['s.description']); ?></textarea>
+            <h2 class="setedit-hidden"><?php echo htmlspecialchars($set['title']); ?></h2>
+            <input class="form-control setedit-visible" name="title" placeholder="Title" value="<?php echo htmlspecialchars($set['title']); ?>" required>
+            <p class="lead setedit-hidden"><?php echo htmlspecialchars($set['description']); ?></p>
+            <textarea class="form-control setedit-visible" name="description" placeholder="Description" rows="3"><?php echo htmlspecialchars($set['description']); ?></textarea>
 
             <table class="table" id="setedit-words">
               <tr>
                 <th>
-                  <span class="setedit-hidden">Word in <?php echo htmlspecialchars($set['l1.name']); ?></span>
+                  <span class="setedit-hidden">Word in <?php echo htmlspecialchars($set['l1_name']); ?></span>
                   <select name="language1" class="form-control setedit-visible">
                     <?php foreach ($languages as $language) { ?>
-                      <option value="<?php echo $language['id']; ?>" <?php if ($language['id'] == $set['l1.id']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
+                      <option value="<?php echo $language['id']; ?>" <?php if ($language['id'] == $set['l1_id']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
                     <?php } ?>
                   </select>
                 </th>
                 <th>
-                  <span class="setedit-hidden">Word in <?php echo htmlspecialchars($set['l2.name']); ?></span>
+                  <span class="setedit-hidden">Word in <?php echo htmlspecialchars($set['l2_name']); ?></span>
                   <select name="language2" class="form-control setedit-visible">
                     <?php foreach ($languages as $language) { ?>
-                      <option value="<?php echo $language['id']; ?>" <?php if ($language['id'] == $set['l2.id']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
+                      <option value="<?php echo $language['id']; ?>" <?php if ($language['id'] == $set['l2_id']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
                     <?php } ?>
                   </select>
                 </th>

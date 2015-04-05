@@ -30,7 +30,7 @@ foreach ($languages as $key => $value) {
 function search_sets($mysqli, $title, $description, $creator, $languages) {
   // guaranteed to be a subset of integers, should be safe to interpolate into the query
   $language_ids = implode(',', array_map(function ($language) { return ($language['selected']) ? $language['id'] : 'null'; }, $languages));
-  $query = 'SELECT s.id, s.title, s.description, l1.name, l2.name, u.username FROM card_sets s, languages l1, languages l2, users u '
+  $query = 'SELECT s.id, s.title, s.description, l1.name AS l1_name, l2.name AS l2_name, u.username FROM card_sets s, languages l1, languages l2, users u '
     . 'WHERE s.user_id = u.id AND s.language1_id = l1.id AND s.language2_id = l2.id '
     . 'AND s.title LIKE CONCAT("%",?,"%") AND s.description LIKE CONCAT("%",?,"%") '
     . 'AND (COALESCE(?, "") = "" OR u.username = ?) AND l1.name IN (' . $language_ids . ') AND l2.name in (' . $language_ids . ');';
@@ -87,10 +87,10 @@ $search_results = search_sets($mysqli, $_GET['title'], $_GET['description'], $_G
           <ul class="list-group">
             <?php foreach ($search_results as $search_result) { ?>
               <li class="list-group-item">
-                <h4><a href="set/overview?id=<?php echo $search_result['s.id']; ?>"><?php echo htmlspecialchars($search_result['s.title']); ?></a></h4>
-                <p><?php echo $search_result['l1.name'] . '/' . $search_result['l2.name']; ?></p>
-                <p>By <a href="browse?creator=<?php echo urlencode($search_result['u.username']); ?>"><?php echo htmlspecialchars($search_result['u.username']); ?></a></p>
-                <p><?php echo htmlspecialchars($search_result['s.description']); ?></p>
+                <h4><a href="set/overview?id=<?php echo $search_result['id']; ?>"><?php echo htmlspecialchars($search_result['title']); ?></a></h4>
+                <p><?php echo $search_result['l1_name'] . '/' . $search_result['l2_name']; ?></p>
+                <p>By <a href="browse?creator=<?php echo urlencode($search_result['username']); ?>"><?php echo htmlspecialchars($search_result['username']); ?></a></p>
+                <p><?php echo htmlspecialchars($search_result['description']); ?></p>
               </li>
             <?php } ?>
           </ul>
