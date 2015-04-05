@@ -86,10 +86,11 @@ function insert_users($mysqli, $username, $hash, $isAdmin){
 			echo 'The username has existed already!';
 			echo "<br /><br />";
 			echo "<a href='register.php'>Please try registering again with another username.</a>";
-		}else
+		}else{
 			echo "Error: " . $sql . "<br>" . $mysqli->error;
 			echo "<br /><br />";
 			echo "<a href='register.php'>Please try registering again.</a>";
+			}
 	}
 
 }
