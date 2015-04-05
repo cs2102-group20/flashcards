@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <?php require_once 'common.inc.php'; ?>
 
-<?php
-if($_SESSION['sendok']){
-}else{
-}
-session_destroy();
-?>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -53,10 +48,16 @@ session_destroy();
 	  <div class="jumbotron" align="center" >
       <div class="smallContainer">
 		<?php
-		//server side checking just in case JavaScript is disabled.
+			if($_SESSION['sendok']){
 
-		//insert data if ok
-		insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
+			//server side checking just in case JavaScript is disabled.
+
+			//insert data if ok
+			insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
+
+			}else{
+			}
+			session_destroy();
 		?>
       </div>
 	  <br />
