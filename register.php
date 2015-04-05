@@ -52,6 +52,7 @@
 			}
 		}
 		*/
+		/*
 		function validateUsername(){
 			var tmp=document.getElementById("username").value;
 			if(tmp.length<1 || tmp.length>20){
@@ -102,7 +103,7 @@
 				validConfirmPw=true;
 			}
 		}
-
+	*/
 	</script>
   
     <?php require 'navigation.inc.php'; ?>
@@ -118,15 +119,15 @@
 <!--					Email: 
 					<input type="text" placeholder="Email" class="form-control" id="email" onchange="validateEmail();"> -->
 					Username:
-					<input type="text" placeholder="Username" class="form-control" id="username" onchange="validateUsername();">
+					<input type="text" placeholder="Username" class="form-control" id="username" required pattern="\w+">
             </div>
 				<div id="usernameMsg">&nbsp;
 				</div>
 				<br />
             <div  class="regForm">
 					Password: <br />
-					<font size='1'>The password should comprise 8-20 characters, including capital or lowercase letters and digits. Special characters or spaces are not accepted.</font><br />
-              <input type="password" placeholder="Password" class="form-control" id="pw" onchange="validatePw();">
+					<br />
+              <input type="password" title="Password must contain 8-20 characters, including UPPER and lowercase letters and numbers" placeholder="Password" class="form-control" id="pw" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  if(this.checkValidity()) form.pwd2.pattern = this.value;">
             </div>
 
 				<div id="pwMsg">&nbsp;
@@ -134,7 +135,7 @@
 				<br>
             <div  class="regForm">
 			Confirm password:
-              <input type="password" placeholder="Password" class="form-control" id="pwConfirm" onchange="validateConfirmPw();">
+              <input type="password" title="Please enter the same Password as above" placeholder="Password" class="form-control" id="pwConfirm" onchange="validateConfirmPw();" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange=" this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
             </div>			
 
 			<div id="confirmPwMsg">&nbsp;
