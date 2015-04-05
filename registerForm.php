@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <?php require_once 'common.inc.php'; ?>
+
+<?php
+if($_SESSION['sendok']){
+}else{
+}
+session_destroy();
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
