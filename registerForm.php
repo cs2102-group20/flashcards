@@ -5,12 +5,13 @@ require_once 'common.inc.php';
 
 //insert data if ok
 if(isset($username)){
-	$mysql_get_users = $mysqli->query("SELECT * FROM table_name where username='$username'");
+	$sql="SELECT * FROM users WHERE username='" . $username . "';";
+	$mysql_get_users = $mysqli->query($sql);
 	$get_rows = mysql_affected_rows($mysqli);
 
 	if($get_rows >=1){
 	echo "user exists";
-	die();
+	//die();
 	}
 
 	else{
