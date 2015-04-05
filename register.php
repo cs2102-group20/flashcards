@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php require_once 'common.inc.php'; ?>
-
+<?php
+if (isset($_SESSION['previous'])) {
+   if (basename($_SERVER['register']) != $_SESSION['previous']) {
+        session_destroy();
+   }
+}
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">

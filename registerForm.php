@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php require_once 'common.inc.php'; ?>
 
-
+<?php $_SESSION['previous'] = basename($_SERVER['registerForm']); ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
