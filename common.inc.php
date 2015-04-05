@@ -75,6 +75,16 @@ function get_cards($mysqli, $set) {
 
 }
 
+function insert_users($mysqli, $username, $hash, $isAdmin){
+	$sql = "INSERT INTO users (username, password, is_admin) VALUES ('" . $username . "', '" . $hash . "', " . $isAdmin . ");";
+	if ($mysqli->query($sql) === TRUE) {
+		echo "New account created successfully";
+	} else {
+		echo "Error: " . $sql . "<br>" . $mysqli->error;
+	}
+
+}
+
 if (isset($_POST['login'])) {
     $hash = hash('sha256', $_POST['pass']);
     if (check_login($mysqli, $_POST['user'], $hash)) {

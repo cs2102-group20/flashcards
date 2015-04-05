@@ -111,7 +111,7 @@
     <div class="container">
       <!-- Example row of columns -->
 	  <div class="jumbotron" align="center" >
-	  <form method="post" onsubmit="if (!(validUn && validPw && validConfirmPw)) {alert('Some fields are invalid. Please try again.'); return false;}" action="registerForm.php">
+	  <form method="post" onsubmit="if (!(validUn && validPw && validConfirmPw)) {alert('Some fields are invalid. Please try again.'); return false;}" action="<?php insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), false); ?>">
       <div class="smallContainer">
 			<h2>Register</h2>
         
@@ -119,7 +119,7 @@
 <!--					Email: 
 					<input type="text" placeholder="Email" class="form-control" id="email" onchange="validateEmail();"> -->
 					Username:
-					<input type="text" placeholder="Username" class="form-control" id="username" required pattern="\w+">
+					<input type="text" placeholder="Username" class="form-control" id="username" name="username" required pattern="\w+">
             </div>
 				<div id="usernameMsg">&nbsp;
 				</div>
@@ -127,7 +127,7 @@
             <div  class="regForm">
 					Password: <br />
 					<br />
-              <input type="password" title="Password must contain 8-20 characters, including UPPER and lowercase letters and numbers" placeholder="Password" class="form-control" id="pw" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  if(this.checkValidity()) form.pwd2.pattern = this.value;">
+              <input type="password" title="Password must contain 8-20 characters, including UPPER and lowercase letters and numbers" placeholder="Password" class="form-control" id="pw" name="pw" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  if(this.checkValidity()) form.pwd2.pattern = this.value;">
             </div>
 
 				<div id="pwMsg">&nbsp;
