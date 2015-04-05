@@ -5,8 +5,6 @@ require_once 'common.inc.php';
 
 //insert data if ok
 insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
-if($mysqli->errno == 1062){
-	echo 'The username has existed already!';
-}
+
 
 

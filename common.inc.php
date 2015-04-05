@@ -80,6 +80,9 @@ function insert_users($mysqli, $username, $hash, $isAdmin){
 	if ($mysqli->query($sql) === TRUE) {
 		echo "New account created successfully";
 	} else {
+		if($mysqli->errno == 1062){
+			echo 'The username has existed already!';
+		}else
 		echo "Error: " . $sql . "<br>" . $mysqli->error;
 	}
 
