@@ -127,7 +127,7 @@
             <div  class="regForm">
 					Password: <br />
 					<br />
-              <input type="password" title="Password must contain 8-20 characters, including UPPER and lowercase letters and numbers" placeholder="Password" class="form-control" id="pw" name="pw" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  if(this.checkValidity()) form.pwd2.pattern = this.value;" />
+              <input type="password" title="Password must contain 8-20 characters, including UPPER and lowercase letters and numbers" placeholder="Password" class="form-control" id="pw" name="pw" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  if(this.checkValidity()) form.pwConfirm.pattern = this.value;" />
             </div>
 
 				<div id="pwMsg">&nbsp;
@@ -135,7 +135,7 @@
 				<br>
             <div  class="regForm">
 			Confirm password:
-              <input type="password" title="Please enter the same Password as above" placeholder="Password" class="form-control" id="pwConfirm" onchange="validateConfirmPw();" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange=" this.setCustomValidity(this.validity.patternMismatch ? this.title : '');" />
+              <input type="password" title="Please enter the same Password as above" placeholder="Password" class="form-control" id="pwConfirm" name="pwConfirm" onchange="validateConfirmPw();" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange=" this.setCustomValidity(this.validity.patternMismatch ? this.title : '');" />
             </div>			
 
 			<div id="confirmPwMsg">&nbsp;
