@@ -5,7 +5,7 @@ require_once 'common.inc.php';
 
 //insert data if ok
 if(isset($_POST['username'])){
-	$sql="SELECT * FROM users WHERE username='" . $username . "';";
+	$sql="SELECT * FROM users WHERE username='" . $_POST['username'] . "';";
 	$mysql_get_users = $mysqli->query($sql);
 	$get_rows = mysql_affected_rows($mysqli);
 
