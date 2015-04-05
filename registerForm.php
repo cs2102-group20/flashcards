@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php require_once 'common.inc.php'; ?>
 
-<?php $_SESSION['previous'] = basename($_SERVER['registerForm']); ?>
+<?php session_start();$_SESSION['previous'] = basename($_SERVER['registerForm']); ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -48,7 +48,7 @@
 	  <div class="jumbotron" align="center" >
       <div class="smallContainer">
 		<?php
-		session_start();
+
 		//echo $_SESSION['sendok'] . "";
 			if ( empty($_SESSION['hasVisited']) ) {
 

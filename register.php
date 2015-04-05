@@ -2,7 +2,7 @@
 <?php require_once 'common.inc.php'; ?>
 <?php
 if (isset($_SESSION['previous'])) {
-   if (basename($_SERVER['register']) != $_SESSION['previous']) {
+   if (basename($_SERVER['registerForm']) != $_SESSION['previous']) {
         session_destroy();
    }
 }
