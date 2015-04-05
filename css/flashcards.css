@@ -96,18 +96,6 @@ body {
 tr:last-child .setedit-delete {
   display: none !important;
 }
-.setedit-enabled #setedit-title {
-  width: 50%;
-}
-.setedit-disabled #setedit-description {
-  width: 100%;
-}
-.setedit-disabled .setedit-field {
-  border: none;
-  display: block;
-  outline: none;
-  resize: none;
-}
 .setedit-delete {
   line-height: inherit;
 }

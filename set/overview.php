@@ -49,14 +49,16 @@ $cards = get_cards($mysqli, $_GET['id']);
               <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
               <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
             </div>
-            <input class="setedit-field h2" id="setedit-title" name="title" readonly placeholder="Title" value="<?php echo htmlspecialchars($set['s.title']); ?>" required>
-            <textarea class="setedit-field lead" id="setedit-description" name="description" readonly rows="3"><?php echo htmlspecialchars($set['s.description']); ?></textarea>
+            <h2 class="setedit-hidden"><?php echo htmlspecialchars($set['s.title']); ?></h2>
+            <input class="form-control setedit-visible" name="title" placeholder="Title" value="<?php echo htmlspecialchars($set['s.title']); ?>" required>
+            <p class="lead setedit-hidden"><?php echo htmlspecialchars($set['s.description']); ?></p>
+            <textarea class="form-control setedit-visible" name="description" placeholder="Description" rows="3"><?php echo htmlspecialchars($set['s.description']); ?></textarea>
 
             <table class="table" id="setedit-words">
               <tr>
                 <th>
                   <span class="setedit-hidden">Word in <?php echo htmlspecialchars($set['l1.name']); ?></span>
-                  <select name="language1" class="setedit-field setedit-visible">
+                  <select name="language1" class="form-control setedit-visible">
                     <?php foreach ($languages as $language) { ?>
                       <option value="<?php echo $language['id']; ?>" <?php if ($language['id'] == $set['l1.id']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
                     <?php } ?>
@@ -64,7 +66,7 @@ $cards = get_cards($mysqli, $_GET['id']);
                 </th>
                 <th>
                   <span class="setedit-hidden">Word in <?php echo htmlspecialchars($set['l2.name']); ?></span>
-                  <select name="language2" class="setedit-field setedit-visible">
+                  <select name="language2" class="form-control setedit-visible">
                     <?php foreach ($languages as $language) { ?>
                       <option value="<?php echo $language['id']; ?>" <?php if ($language['id'] == $set['l2.id']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
                     <?php } ?>
@@ -75,20 +77,22 @@ $cards = get_cards($mysqli, $_GET['id']);
               <?php foreach ($cards as $card) { ?>
                 <tr>
                   <td>
-                    <input class="setedit-field" name="word1[]" readonly value="<?php echo htmlspecialchars($card['word1']); ?>" required>
+                    <span class="setedit-hidden"><?php echo htmlspecialchars($card['word1']); ?></span>
+                    <input class="form-control setedit-visible" name="word1[]" value="<?php echo htmlspecialchars($card['word1']); ?>" required>
                   </td>
                   <td>
-                    <input class="setedit-field" name="word2[]" readonly value="<?php echo htmlspecialchars($card['word2']); ?>" required>
+                    <span class="setedit-hidden"><?php echo htmlspecialchars($card['word2']); ?></span>
+                    <input class="form-control setedit-visible" name="word2[]" value="<?php echo htmlspecialchars($card['word2']); ?>" required>
                   </td>
                   <td><button class="close setedit-visible setedit-delete" type="button" aria-label="Delete"><span aria-hidden="true">&times;</span></button></td>
                 </tr>
               <?php } ?>
               <tr>
                 <td>
-                  <input class="setedit-field" name="word1[]" readonly value="">
+                  <input class="form-control setedit-visible" name="word1[]" value="">
                 </td>
                 <td>
-                  <input class="setedit-field" name="word2[]" readonly value="">
+                  <input class="form-control setedit-visible" name="word2[]" value="">
                 </td>
                 <td><button class="close setedit-visible setedit-delete" type="button" aria-label="Delete"><span aria-hidden="true">&times;</span></button></td>
               </tr>
