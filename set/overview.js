@@ -1,6 +1,10 @@
-$('#setedit-edit').click(function () {
+$('#set-edit').click(function () {
     $('.setedit').removeClass('setedit-disabled').addClass('setedit-enabled');
 });
+
+$('#set-delete').click(function () {
+    return confirm("Delete this set?");
+})
 
 $('#setedit-words')
     .on('click', '.setedit-delete', function(ev) {

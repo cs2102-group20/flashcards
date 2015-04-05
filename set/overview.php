@@ -44,8 +44,8 @@ $cards = get_cards($mysqli, $_GET['id']);
         <div class="col-md-9">
           <form class="setedit setedit-disabled" method="post">
             <div class="pull-right">
-              <button class="btn btn-default setedit-hidden" id="setedit-edit" type="button">Edit</button>
-              <button class="btn btn-danger setedit-hidden" name="delete" type="submit">Delete</button>
+              <button class="btn btn-default setedit-hidden" id="set-edit" type="button">Edit</button>
+              <button class="btn btn-danger setedit-hidden" id="set-delete" name="delete" type="submit">Delete</button>
               <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
               <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
             </div>
