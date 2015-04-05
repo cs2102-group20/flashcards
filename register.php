@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php require_once 'common.inc.php'; ?>
 <?php
-$_SESSION['sendok'] = true;
+	$_SESSION['sendok'] = true;
 ?>
 <html lang="en">
   <head>

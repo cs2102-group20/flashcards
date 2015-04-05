@@ -48,16 +48,17 @@
 	  <div class="jumbotron" align="center" >
       <div class="smallContainer">
 		<?php
-			if($_SESSION['sendok']){
+		session_start();
+		//echo $_SESSION['sendok'] . "";
+			if ( empty($_SESSION['hasVisited']) ) {
 
 			//server side checking just in case JavaScript is disabled.
 
 			//insert data if ok
 			insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
 
-			}else{
 			}
-			session_destroy();
+			$_SESSION['hasVisited'] = true;
 		?>
       </div>
 	  <br />
