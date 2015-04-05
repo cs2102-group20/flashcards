@@ -55,8 +55,10 @@
 			//server side checking just in case JavaScript is disabled.
 
 			//insert data if ok
-			insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
+				insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
 
+			}else{
+				echo "You can go to other pages via the hyperlinks in the navigation bar :)";
 			}
 			$_SESSION['hasVisited'] = true;
 		?>
