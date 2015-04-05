@@ -79,11 +79,14 @@ function insert_users($mysqli, $username, $hash, $isAdmin){
 	$sql = "INSERT INTO users (username, password, is_admin) VALUES ('" . $username . "', '" . $hash . "', " . $isAdmin . ");";
 	if ($mysqli->query($sql) === TRUE) {
 		echo "New account created successfully";
+		echo "<a href='index.php'>Go back to homepage.</a>";
 	} else {
 		if($mysqli->errno == 1062){
 			echo 'The username has existed already!';
+			echo "<a href='register.php'>Please try registering again with another username.</a>";
 		}else
-		echo "Error: " . $sql . "<br>" . $mysqli->error;
+			echo "Error: " . $sql . "<br>" . $mysqli->error;
+			echo "<a href='register.php'>Please try registering again.</a>";
 	}
 
 }
