@@ -33,9 +33,9 @@ if (isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u_id'] || USER_IS_ADMI
       exit(1);
     }
   } elseif (isset($_POST['save'])) {
-    if ($updatesetstmt = $mysqli->prepare('UPDATE card_sets SET title = ?, description = ?, language1_id = ?, language2_id = ? WHERE id = ?')
-      && $deletecardstmt = $mysqli->prepare('DELETE FROM cards WHERE set_id = ?')
-      && $insertcardstmt = $mysqli->prepare('INSERT INTO cards VALUES (0, ?, ?, ?)')) {
+    if (($updatesetstmt = $mysqli->prepare('UPDATE card_sets SET title = ?, description = ?, language1_id = ?, language2_id = ? WHERE id = ?'))
+      && ($deletecardstmt = $mysqli->prepare('DELETE FROM cards WHERE set_id = ?'))
+      && ($insertcardstmt = $mysqli->prepare('INSERT INTO cards VALUES (0, ?, ?, ?)'))) {
 
       $mysqli->autocommit(false);
 
