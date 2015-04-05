@@ -94,7 +94,7 @@ body {
 .setedit-enabled .setedit-hidden,
 .setedit-disabled .setedit-visible,
 tr:last-child .setedit-delete {
-  display: none;
+  display: none !important;
 }
 .setedit-enabled #setedit-title {
   width: 50%;

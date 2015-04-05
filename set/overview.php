@@ -23,6 +23,8 @@
 
 <?php
 $languages = get_languages($mysqli);
+$set = get_set($mysqli, $_GET['id']);
+$cards = get_cards($mysqli, $_GET['id']);
 ?>
 
   <body>
@@ -52,13 +54,23 @@ $languages = get_languages($mysqli);
 
             <table class="table" id="setedit-words">
               <tr>
-                <th id='langWordCell'>
-                  Word in $lang1      
+                <th>
+                  <span class="setedit-hidden">Word in <?php echo htmlspecialchars($set['l1.name']); ?></span>
+                  <select name="language1" class="setedit-field setedit-visible">
+                    <?php foreach ($languages as $language) { ?>
+                      <option value="<?php echo $language['id']; ?>" <?php if ($language['id'] == $set['l1.id']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
+                    <?php } ?>
+                  </select>
                 </th>
-                <th id='langTranslationCell'>
-                  Word in $lang2
+                <th>
+                  <span class="setedit-hidden">Word in <?php echo htmlspecialchars($set['l2.name']); ?></span>
+                  <select name="language2" class="setedit-field setedit-visible">
+                    <?php foreach ($languages as $language) { ?>
+                      <option value="<?php echo $language['id']; ?>" <?php if ($language['id'] == $set['l2.id']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
+                    <?php } ?>
+                  </select>
                 </th>
-                <td></td>
+                <th></th>
               </tr>
               <tr>
                 <td>
@@ -95,6 +107,5 @@ $languages = get_languages($mysqli);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="overview.js" defer></script>
-    <script>var languages = <?php echo json_encode($languages); ?>;</script>
   </body>
 </html>

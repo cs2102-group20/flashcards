@@ -49,7 +49,7 @@ function get_languages($mysqli) {
 
 function get_set($mysqli, $set) {
     if ($stmt = $mysqli->prepare(
-        'SELECT s.title, s.description, l1.name, l2.name, u.username, u.id '
+        'SELECT s.title, s.description, l1.id, l1.name, l2.id, l2.name, u.username, u.id '
         . 'FROM card_sets s, languages l1, languages l2, users u '
         . 'WHERE s.user_id = u.id AND s.language1_id = l1.id AND s.language2_id = l2.id AND s.id = ?')) {
 
