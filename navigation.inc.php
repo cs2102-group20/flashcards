@@ -24,7 +24,7 @@
           <button name="logout" type="submit" class="btn btn-default">Sign out</button>
         </form>
         <p class="navbar-text navbar-right">Signed in as
-          <a href="user?name=<?php echo USER_NAME; ?>"><?php echo USER_NAME; ?></a>
+          <a href="browse?creator=<?php echo urlencode(USER_NAME); ?>"><?php echo htmlspecialchars(USER_NAME); ?></a>
         </p>
       <?php } else { ?>
         <form class="navbar-form navbar-right" method="post">

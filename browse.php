@@ -58,21 +58,21 @@ $search_results = search_sets($mysqli, $_GET['title'], $_GET['description'], $_G
           <form>
             <div class="form-group">
               <label for="filter-title">Title</label>
-              <input id="filter-title" name="title" type="text" class="form-control" placeholder="Partial title" value="<?php echo $_GET['title']; ?>">
+              <input id="filter-title" name="title" type="text" class="form-control" placeholder="Partial title" value="<?php echo htmlspecialchars($_GET['title']); ?>">
             </div>
             <div class="form-group">
               <label for="filter-description">Description</label>
-              <input id="filter-description" name="description" type="text" class="form-control" placeholder="Partial description" value="<?php echo $_GET['description']; ?>">
+              <input id="filter-description" name="description" type="text" class="form-control" placeholder="Partial description" value="<?php echo htmlspecialchars($_GET['description']); ?>">
             </div>
             <div class="form-group">
               <label for="filter-creator">Creator</label>
-              <input id="filter-creator" name="creator" type="text" class="form-control" placeholder="Username" value="<?php echo $_GET['creator']; ?>">
+              <input id="filter-creator" name="creator" type="text" class="form-control" placeholder="Username" value="<?php echo htmlspecialchars($_GET['creator']); ?>">
             </div>
             <div class="form-group">
               <label for="filter-languages">Languages</label>
               <select id="filter-languages" name="languages[]" multiple class="form-control">
                 <?php foreach ($languages as $language) { ?>
-                  <option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo $language['name']; ?></option>
+                  <option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
                 <?php } ?>
               </select>
             </div>
@@ -89,7 +89,7 @@ $search_results = search_sets($mysqli, $_GET['title'], $_GET['description'], $_G
               <li class="list-group-item">
                 <h4><a href="set/overview?id=<?php echo $search_result['s.id']; ?>"><?php echo htmlspecialchars($search_result['s.title']); ?></a></h4>
                 <p><?php echo $search_result['l1.name'] . '/' . $search_result['l2.name']; ?></p>
-                <p>By <a href="user?name=<?php echo $search_result['u.username']; ?>"><?php echo $search_result['u.username']; ?></a></p>
+                <p>By <a href="browse?creator=<?php echo urlencode($search_result['u.username']); ?>"><?php echo htmlspecialchars($search_result['u.username']); ?></a></p>
                 <p><?php echo htmlspecialchars($search_result['s.description']); ?></p>
               </li>
             <?php } ?>
