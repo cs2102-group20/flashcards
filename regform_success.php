@@ -48,7 +48,8 @@
 	  <div class="jumbotron" align="center" >
       <div class="smallContainer">
 			User account is successfully created! <br /><br />
-			You can now log in and create your own card sets!
+			You can now log in and create your own card sets! <br /><br />
+			You can go to other pages via the hyperlinks in the navigation bar :) 
       </div>
 	  <br />
     </div>
