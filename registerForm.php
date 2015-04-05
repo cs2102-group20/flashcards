@@ -4,5 +4,18 @@ require_once 'common.inc.php';
 
 
 //insert data if ok
+if(isset($username)){
+	$mysql_get_users = $mysqli->query("SELECT * FROM table_name where username='$username'");
+	$get_rows = mysql_affected_rows($mysqli);
 
-insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
+	if($get_rows >=1){
+	echo "user exists";
+	die();
+	}
+
+	else{
+	echo "user do not exists";
+	insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
+	}
+}
+
