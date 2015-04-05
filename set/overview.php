@@ -25,6 +25,40 @@
 $languages = get_languages($mysqli);
 $set = get_set($mysqli, $_GET['id']);
 $cards = get_cards($mysqli, $_GET['id']);
+
+if (isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u.id'] || USER_IS_ADMIN)) {
+  if (isset($_POST['delete'])) {
+    if (!$mysqli->query('DELETE FROM card_sets WHERE id = ' . $set['s.id'])) {
+      echo 'Unable to delete set.';
+      exit(1);
+    }
+  } elseif (isset($_POST['save'])) {
+    if ($updatesetstmt = $mysqli->prepare('UPDATE card_sets SET title = ?, description = ?, language1_id = ?, language2_id = ? WHERE id = ?')
+      && $deletecardstmt = $mysqli->prepare('DELETE FROM cards WHERE set_id = ?')
+      && $insertcardstmt = $mysqli->prepare('INSERT INTO cards VALUES (0, ?, ?, ?)')) {
+
+      $mysqli->autocommit(false);
+
+      $updatesetstmt->bind_param("ssiii", $_POST['title'], $_POST['description'], $_POST['language1'], $_POST['language2'], $set['s.id']);
+      $updatesetstmt->execute();
+      $deletecardstmt->bind_param("i", $set['s.id']);
+      $deletecardstmt->execute();
+
+      $cardcnt = min(count($_POST['word1']), count($_POST['word2']));
+      for ($i = 0; $i < $cardcnt; $i++) {
+        if (strlen($_POST['word1'][$i]) > 0 && strlen($_POST['word2'][$i]) > 0) {
+          $insertcardstmt->bind_param("ssi", $_POST['word1'][$i], $_POST['word2'][$i], $set['s.id']);
+          $insertcardstmt->execute();
+        }
+      }
+
+      $mysqli->autocommit(true);
+    } else {
+      echo 'Unable to prepare set update.';
+      exit(1);
+    }
+  }
+}
 ?>
 
   <body>

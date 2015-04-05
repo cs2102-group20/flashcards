@@ -55,7 +55,7 @@ function get_set($mysqli, $set) {
 
         $stmt->bind_param("i", $set);
         $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
     } else {
         echo "Unable to fetch set.";
         exit(1);
