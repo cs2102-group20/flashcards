@@ -78,7 +78,7 @@ function get_cards($mysqli, $set) {
 function insert_users($mysqli, $username, $hash, $isAdmin){
 	$sql = "INSERT INTO users (username, password, is_admin) VALUES ('" . $username . "', '" . $hash . "', " . $isAdmin . ");";
 	if ($mysqli->query($sql) === TRUE) {
-		echo "New account created successfully! <br /> You can now log in and create your own card sets!";
+		header("location: regform_success");
 	} else {
 		if($mysqli->errno == 1062){
 			echo 'The username has existed already!';

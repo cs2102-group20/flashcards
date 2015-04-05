@@ -47,14 +47,8 @@
       <!-- Example row of columns -->
 	  <div class="jumbotron" align="center" >
       <div class="smallContainer">
-		<?php
-
-			//server side checking just in case JavaScript is disabled.
-
-			//insert data if ok
-				insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
-
-		?>
+			User account is successfully created! <br /><br />
+			You can now log in and create your own card sets!
       </div>
 	  <br />
     </div>
