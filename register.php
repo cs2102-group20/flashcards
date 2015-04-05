@@ -121,8 +121,8 @@
 					Username:
 					<input type="text" placeholder="Username" class="form-control" id="username" name="username" required pattern="\w+" />
             </div>
-				<div id="usernameMsg">&nbsp;
-				</div>
+				<!-- <div id="usernameMsg">&nbsp;
+				</div> -->
 				<br />
             <div  class="regForm">
 					Password: <br />
@@ -130,16 +130,16 @@
               <input type="password" title="Password must contain 8-20 characters, including UPPER and lowercase letters and numbers" placeholder="Password" class="form-control" id="pw" name="pw" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  if(this.checkValidity()) form.pwConfirm.pattern = this.value;" />
             </div>
 
-				<div id="pwMsg">&nbsp;
-				</div>
+			<!--	<div id="pwMsg">&nbsp;
+				</div>-->
 				<br>
             <div  class="regForm">
 			Confirm password:
               <input type="password" title="Please enter the same Password as above" placeholder="Password" class="form-control" id="pwConfirm" name="pwConfirm" onchange="validateConfirmPw();" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange=" this.setCustomValidity(this.validity.patternMismatch ? this.title : '');" />
             </div>			
 
-			<div id="confirmPwMsg">&nbsp;
-			</div>
+		<!--	<div id="confirmPwMsg">&nbsp;
+			</div> -->
       </div>
 	  <br />
      <button type="submit" class="btn btn-success" >Register!</button>
