@@ -32,8 +32,8 @@ function search_sets($mysqli, $title, $description, $creator, $languages) {
   $language_ids = implode(',', array_map(function ($language) { return ($language['selected']) ? $language['id'] : 'null'; }, $languages));
   $query = 'SELECT s.id, s.title, s.description, l1.name AS l1_name, l2.name AS l2_name, u.username FROM card_sets s, languages l1, languages l2, users u '
     . 'WHERE s.user_id = u.id AND s.language1_id = l1.id AND s.language2_id = l2.id '
-    . 'AND s.title LIKE CONCAT("%",?,"%") AND s.description LIKE CONCAT("%",?,"%") '
-    . 'AND (COALESCE(?, "") = "" OR u.username = ?) AND l1.name IN (' . $language_ids . ') AND l2.name in (' . $language_ids . ');';
+    . 'AND s.title LIKE CONCAT("%", COALESCE(?, ""), "%") AND s.description LIKE CONCAT("%", COALESCE(?, ""), "%") '
+    . 'AND (COALESCE(?, "") = "" OR u.username = ?) AND l1.id IN (' . $language_ids . ') AND l2.id in (' . $language_ids . ');';
 
   if ($stmt = $mysqli->prepare($query)) {
     $stmt->bind_param("ssss", $title, $description, $creator, $creator);
