@@ -49,8 +49,8 @@ $cards = get_cards($mysqli, $_GET['id']);
               <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
               <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
             </div>
-            <input class="setedit-field h2" id="setedit-title" name="title" readonly placeholder="Title" value="Title" required>
-            <textarea class="setedit-field lead" id="setedit-description" name="description" readonly rows="3">Description</textarea>
+            <input class="setedit-field h2" id="setedit-title" name="title" readonly placeholder="Title" value="<?php echo htmlspecialchars($set['s.title']); ?>" required>
+            <textarea class="setedit-field lead" id="setedit-description" name="description" readonly rows="3"><?php echo htmlspecialchars($set['s.description']); ?></textarea>
 
             <table class="table" id="setedit-words">
               <tr>
@@ -72,15 +72,17 @@ $cards = get_cards($mysqli, $_GET['id']);
                 </th>
                 <th></th>
               </tr>
-              <tr>
-                <td>
-                  <input class="setedit-field" name="word1[]" readonly value="Word1" required>
-                </td>
-                <td>
-                  <input class="setedit-field" name="word2[]" readonly value="Word2" required>
-                </td>
-                <td><button class="close setedit-visible setedit-delete" type="button" aria-label="Delete"><span aria-hidden="true">&times;</span></button></td>
-              </tr>
+              <?php foreach ($cards as $card) { ?>
+                <tr>
+                  <td>
+                    <input class="setedit-field" name="word1[]" readonly value="<?php echo htmlspecialchars($card['word1']); ?>" required>
+                  </td>
+                  <td>
+                    <input class="setedit-field" name="word2[]" readonly value="<?php echo htmlspecialchars($card['word2']); ?>" required>
+                  </td>
+                  <td><button class="close setedit-visible setedit-delete" type="button" aria-label="Delete"><span aria-hidden="true">&times;</span></button></td>
+                </tr>
+              <?php } ?>
               <tr>
                 <td>
                   <input class="setedit-field" name="word1[]" readonly value="">
