@@ -16,7 +16,9 @@ $('#setedit-words')
     })
     .on('blur', '.setedit-field.form-control', function(ev) {
         var row = $(ev.target).closest('tr');
-        if (!row.find('.setedit-field').filter(function() { return $(this).val() }).length) {
+        var newTarget = $(ev.relatedTarget || ev.explicitOriginalTarget || document.activeElement);
+        if (!row.find('.setedit-field').filter(function() { return $(this).val() }).length
+            && !row.has(newTarget).length) {
             row.remove();
         }
     });
