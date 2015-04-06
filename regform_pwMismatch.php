@@ -47,9 +47,9 @@
       <!-- Example row of columns -->
 	  <div class="jumbotron" align="center" >
       <div class="smallContainer">
-			Unexpected error.
+			The passwords do not match.
 			<br /><br />
-			<a href='register.php'>Please try registering again and check if you have enabled JavaScript</a>
+			<a href='register.php'>Please try registering again.</a>
       </div>
 	  <br />
     </div>
