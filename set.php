@@ -62,6 +62,10 @@ if (USER_MAY_EDIT) {
       echo 'Unable to prepare set update.';
       exit(1);
     }
+  } elseif (isset($_POST['favorite'])) {
+    insert_favorite($mysqli, $set['id']);
+  } elseif (isset($_POST['unfavorite'])) {
+    remove_favorite($mysqli, $set['id']);
   }
   $set = get_set($mysqli, $_GET['id']);
   $cards = get_cards($mysqli, $_GET['id']);
@@ -84,14 +88,19 @@ if (USER_MAY_EDIT) {
 
         <div class="col-md-9">
           <form class="setedit setedit-disabled" method="post">
-            <?php if (USER_MAY_EDIT) { ?>
               <div class="pull-right">
-                <button class="btn btn-default setedit-hidden" id="set-edit" type="button">Edit</button>
-                <button class="btn btn-danger setedit-hidden" id="set-delete" name="delete" type="submit">Delete</button>
-                <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
-                <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
+                <?php if (has_favorited($mysqli, $set['id'])) { ?>
+                  <button class="btn btn-success setedit-hidden" name="favorite" type="submit">Add to Favorites</button>
+                <?php } else { ?>
+                  <button class="btn btn-warning setedit-hidden" name="unfavorite" type="submit">Remove from Favorites</button>
+                <?php } ?>
+                <?php if (USER_MAY_EDIT) { ?>
+                  <button class="btn btn-default setedit-hidden" id="set-edit" type="button">Edit</button>
+                  <button class="btn btn-danger setedit-hidden" id="set-delete" name="delete" type="submit">Delete</button>
+                  <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
+                  <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
+                <?php } ?>
               </div>
-            <?php } ?>
             <h2 class="setedit-hidden"><?php echo htmlspecialchars($set['title']); ?></h2>
             <input class="form-control setedit-visible" name="title" placeholder="Title" value="<?php echo htmlspecialchars($set['title']); ?>" required>
             <p class="lead setedit-hidden"><?php echo htmlspecialchars($set['description']); ?></p>

@@ -75,6 +75,40 @@ function get_cards($mysqli, $set) {
 
 }
 
+function has_favorited($mysqli, $set) {
+    if ($stmt = $mysqli->prepare('SELECT 1 FROM favorites WHERE user_id = ? AND set_id = ?')) {
+        $stmt->bind_param("ii", USER_ID, $set);
+        $stmt->execute();
+        return count($stmt->get_result()->fetch_all()) > 0;
+    } else {
+        echo "Unable to fetch favorites.";
+        exit(1);
+    }
+
+}
+
+function insert_favorite($mysqli, $set) {
+    if ($stmt = $mysqli->prepare('INSERT INTO favorites VALUES (?, ?)')) {
+        $stmt->bind_param("ii", USER_ID, $set);
+        $stmt->execute();
+    } else {
+        echo "Unable to add favorite.";
+        exit(1);
+    }
+
+}
+
+function remove_favorite($mysqli, $set) {
+    if ($stmt = $mysqli->prepare('DELETE FROM favorites WHERE user_id = ? AND set_id = ?')) {
+        $stmt->bind_param("ii", USER_ID, $set);
+        $stmt->execute();
+    } else {
+        echo "Unable to add favorite.";
+        exit(1);
+    }
+
+}
+
 function insert_users($mysqli, $username, $hash, $isAdmin){
 	$sql = "INSERT INTO users (username, password, is_admin) VALUES ('" . $username . "', '" . $hash . "', " . $isAdmin . ");";
 	if ($mysqli->query($sql) === TRUE) {
