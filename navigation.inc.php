@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav">
         <li><a href="browse">Browse</a></li>
         <?php if (USER_IS_LOGGED_IN) { ?>
-          <li><a href="create">Create</a></li>
+          <li><a href="createSet">Create</a></li>
           <li><a href="favorites">Favorites</a></li>
         <?php } else { ?>
           <li><a href="register">Register</a></li>

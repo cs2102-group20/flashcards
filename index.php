@@ -39,7 +39,7 @@
           <h2>Want to make your own?</h2>
           <?php if (USER_IS_LOGGED_IN) { ?>
             <p>This website wouldn't be possible without the efforts of our users, who also happen to be the developers. Please help by creating your own flashcard sets!</p>
-            <p><a class="btn btn-default" href="create" role="button">Create &raquo;</a></p>
+            <p><a class="btn btn-default" href="createSet" role="button">Create &raquo;</a></p>
           <?php } else { ?>
             <p>This website wouldn't be possible without the efforts of our users, who also happen to be the developers. You too, can join them, for only a low fee of $599/month!</p>
             <p><a class="btn btn-default" href="register" role="button">Register &raquo;</a></p>
