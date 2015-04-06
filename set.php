@@ -30,7 +30,10 @@ define('USER_MAY_EDIT', isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u_
 
 if (USER_MAY_EDIT) {
   if (isset($_POST['delete'])) {
-    if (!$mysqli->query('DELETE FROM card_sets WHERE id = ' . $set['id'])) {
+    if ($mysqli->query('DELETE FROM card_sets WHERE id = ' . $set['id'])) {
+      echo 'Set deleted.';
+      exit();
+    } else {
       echo 'Unable to delete set.';
       exit(1);
     }
@@ -54,6 +57,7 @@ if (USER_MAY_EDIT) {
         }
       }
 
+      $mysqli->commit();
       $mysqli->autocommit(true);
     } else {
       echo 'Unable to prepare set update.';
