@@ -81,13 +81,15 @@ function insert_users($mysqli, $username, $hash, $isAdmin){
 		header("location: regform_success");
 	} else {
 		if($mysqli->errno == 1062){
-			echo 'The username has existed already!';
-			echo "<br /><br />";
-			echo "<a href='register.php'>Please try registering again with another username.</a>";
+			header("location: regform_userExist");
 		}else{
+		/*
 			echo "Error: " . $sql . "<br>" . $mysqli->error;
 			echo "<br /><br />";
 			echo "<a href='register.php'>Please try registering again.</a>";
+			*/
+			//not expect to occur...
+			header("location: regform_unexpected");
 			}
 	}
 
