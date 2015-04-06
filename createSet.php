@@ -21,7 +21,9 @@
     <![endif]-->
 	<?php
 	$languages = get_languages($mysqli);
-	
+	foreach ($languages as $key => $value) {
+	  $languages[$key]['selected'] = !isset($_GET['languages']) || in_array($value['id'], $_GET['languages']);
+	}
 	?>
   </head>
 
@@ -59,13 +61,13 @@
 				<tr height='40' ><td width='50' align='center'>&nbsp;</td><td width='300' align='center'>
 					<select id='langWord' name='langWord' required>
 					<?php foreach ($languages as $language) { ?>
-					<option value="<?php echo $language['id']; ?>" ><?php echo htmlspecialchars($language['name']); ?></option>
+					<option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
 					<?php } ?>
 					</select>
 					</td><td width='500' align='center'>
 					<select id='langTranslation' name='langTranslation' required>
 					<?php foreach ($languages as $language) { ?>
-					<option value="<?php echo $language['id']; ?>" ><?php echo htmlspecialchars($language['name']); ?></option>
+					<option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option>
 					<?php } ?>
 					</select>
 				</td></tr>
