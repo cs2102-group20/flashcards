@@ -90,9 +90,9 @@ if (USER_MAY_EDIT) {
           <form class="setedit setedit-disabled" method="post">
               <div class="pull-right">
                 <?php if (has_favorited($mysqli, $set['id'])) { ?>
-                  <button class="btn btn-success setedit-hidden" name="favorite" type="submit">Add to Favorites</button>
-                <?php } else { ?>
                   <button class="btn btn-warning setedit-hidden" name="unfavorite" type="submit">Remove from Favorites</button>
+                <?php } else { ?>
+                  <button class="btn btn-success setedit-hidden" name="favorite" type="submit">Add to Favorites</button>
                 <?php } ?>
                 <?php if (USER_MAY_EDIT) { ?>
                   <button class="btn btn-default setedit-hidden" id="set-edit" type="button">Edit</button>
