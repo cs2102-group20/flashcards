@@ -120,14 +120,13 @@
 <!--					Email: 
 					<input type="text" placeholder="Email" class="form-control" id="email" onchange="validateEmail();"> -->
 					Username:
-					<input type="text" placeholder="Username" class="form-control" id="username" name="username" required pattern="\w+" />
+					<input type="text" title="Username must contain 1-20 characters and can contain UPPER or lowercase letters or numbers" placeholder="Username" class="form-control" id="username" name="username" required pattern="^[0-9a-zA-Z]{1,20}$" onchange=" this.setCustomValidity(this.validity.patternMismatch ? this.title : '');"/>
             </div>
 				<!-- <div id="usernameMsg">&nbsp;
 				</div> -->
 				<br />
             <div  class="regForm">
-					Password: <br />
-					<br />
+					Password: 
               <input type="password" title="Password must contain 8-20 characters, including UPPER and lowercase letters and numbers" placeholder="Password" class="form-control" id="pw" name="pw" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');  if(this.checkValidity()) form.pwConfirm.pattern = this.value;" />
             </div>
 
