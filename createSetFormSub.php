@@ -2,7 +2,7 @@
 <?php
 
 	function insert_sets($mysqli, $title, $description, $lang_id_word, $lang_id_translation, $user){
-		$sql="INSERT INTO card_sets (title, description, language1_id,language2_id, user_id) VALUES ('" . $title . "','" . $description . "','" . $lang_id_word . "','" . $lang_id_translation . "','" . $user . "');";
+		$sql="INSERT INTO card_sets (title, description, language1_id,language2_id, user_id) VALUES ('" . $title . "','" . $description . "'," . $lang_id_word . "," . $lang_id_translation . ",'" . $user . "');";
 		if ($mysqli->query($sql) === TRUE) {
 			header("location: createSet_success");
 		} else {
@@ -15,6 +15,7 @@
 	
 	$languages = get_languages($mysqli);
 	foreach ($languages as $key => $value) {
+	echo $_GET['langWord'];
 	  if(!isset($_GET['langWord']) || in_array($value['id'], $_GET['langWord']))$language_id_word=$value['id'];
 	}
 	//$language_id_word = implode('', array_map(function ($language) { return ($language['selected']) ? $language['id'] : ''; }, $languages));
