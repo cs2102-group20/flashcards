@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php require_once '../common.inc.php'; ?>
+<?php require_once 'common.inc.php'; ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,10 +9,10 @@
     <title>Language Flashcards</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Flashcards custom css -->
-    <link href="../css/flashcards.css" rel="stylesheet">
+    <link href="css/flashcards.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -65,7 +65,7 @@ if (USER_MAY_EDIT) {
 ?>
 
   <body>
-    <?php require '../navigation.inc.php'; ?>
+    <?php require 'navigation.inc.php'; ?>
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
@@ -151,6 +151,6 @@ if (USER_MAY_EDIT) {
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="overview.js" defer></script>
+    <script src="set.js" defer></script>
   </body>
 </html>

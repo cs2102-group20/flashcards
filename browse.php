@@ -87,7 +87,7 @@ $search_results = search_sets($mysqli, $_GET['title'], $_GET['description'], $_G
           <ul class="list-group">
             <?php foreach ($search_results as $search_result) { ?>
               <li class="list-group-item">
-                <h4><a href="set/overview?id=<?php echo $search_result['id']; ?>"><?php echo htmlspecialchars($search_result['title']); ?></a></h4>
+                <h4><a href="set?id=<?php echo $search_result['id']; ?>"><?php echo htmlspecialchars($search_result['title']); ?></a></h4>
                 <p><?php echo $search_result['l1_name'] . '/' . $search_result['l2_name']; ?></p>
                 <p>By <a href="browse?creator=<?php echo urlencode($search_result['username']); ?>"><?php echo htmlspecialchars($search_result['username']); ?></a></p>
                 <p><?php echo htmlspecialchars($search_result['description']); ?></p>
