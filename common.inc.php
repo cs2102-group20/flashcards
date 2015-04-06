@@ -76,8 +76,8 @@ function get_cards($mysqli, $set) {
 }
 
 function has_favorited($mysqli, $set) {
-    if ($stmt = $mysqli->prepare('SELECT 1 FROM favorites WHERE user_id = ? AND set_id = ?')) {
-        $stmt->bind_param("ii", USER_ID, $set);
+    if ($stmt = $mysqli->prepare('SELECT 1 FROM favorites WHERE user_id = ' . USER_ID . ' AND set_id = ?')) {
+        $stmt->bind_param("i", $set);
         $stmt->execute();
         return count($stmt->get_result()->fetch_all()) > 0;
     } else {
@@ -88,8 +88,8 @@ function has_favorited($mysqli, $set) {
 }
 
 function insert_favorite($mysqli, $set) {
-    if ($stmt = $mysqli->prepare('INSERT INTO favorites VALUES (?, ?)')) {
-        $stmt->bind_param("ii", USER_ID, $set);
+    if ($stmt = $mysqli->prepare('INSERT INTO favorites VALUES (' . USER_ID . ', ?)')) {
+        $stmt->bind_param("i", $set);
         $stmt->execute();
     } else {
         echo "Unable to add favorite.";
@@ -99,8 +99,8 @@ function insert_favorite($mysqli, $set) {
 }
 
 function remove_favorite($mysqli, $set) {
-    if ($stmt = $mysqli->prepare('DELETE FROM favorites WHERE user_id = ? AND set_id = ?')) {
-        $stmt->bind_param("ii", USER_ID, $set);
+    if ($stmt = $mysqli->prepare('DELETE FROM favorites WHERE user_id = ' . USER_ID . ' AND set_id = ?')) {
+        $stmt->bind_param("i", $set);
         $stmt->execute();
     } else {
         echo "Unable to add favorite.";
