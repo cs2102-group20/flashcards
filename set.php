@@ -62,13 +62,17 @@ if (USER_MAY_EDIT) {
       echo 'Unable to prepare set update.';
       exit(1);
     }
-  } elseif (isset($_POST['favorite'])) {
+  }
+  $set = get_set($mysqli, $_GET['id']);
+  $cards = get_cards($mysqli, $_GET['id']);
+}
+
+if (USER_IS_LOGGED_IN) {
+  if (isset($_POST['favorite'])) {
     insert_favorite($mysqli, $set['id']);
   } elseif (isset($_POST['unfavorite'])) {
     remove_favorite($mysqli, $set['id']);
   }
-  $set = get_set($mysqli, $_GET['id']);
-  $cards = get_cards($mysqli, $_GET['id']);
 }
 ?>
 
