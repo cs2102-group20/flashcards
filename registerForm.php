@@ -50,9 +50,13 @@
 		<?php
 
 			//server side checking just in case JavaScript is disabled.
-			if(strcmp($_POST['pw']==$_POST['pwConfirm'])==0){
+			if(strcmp($_POST['pw'],$_POST['pwConfirm'])==0){
 			//insert data if ok
 				insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
+			}else{
+				echo "The passwords do not match.";
+				echo "<br /><br />";
+				echo "<a href='register.php'>Please try registering again.</a>";
 			}
 		?>
       </div>
