@@ -47,16 +47,9 @@
       <!-- Example row of columns -->
 	  <div class="jumbotron" align="center" >
       <div class="smallContainer">
-		<?php
-
-			//server side checking just in case JavaScript is disabled.
-			if(strcmp($_POST['pw'],$_POST['pwConfirm'])==0){
-			//insert data if ok
-				insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
-			}else{
-				header("location: regForm_pwMismatch");
-			}
-		?>
+			Unexpected error.
+			<br /><br />
+			<a href='register.php'>Please try registering again and check if you have enabled JavaScript</a>
       </div>
 	  <br />
     </div>
