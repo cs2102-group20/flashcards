@@ -6,7 +6,10 @@
 		if ($mysqli->query($sql) === TRUE) {
 			header("location: createSet_success");
 		} else {
-			header("location: createSet_unexpected");
+			//header("location: createSet_unexpected");
+			echo "Error: " . $sql . "<br>" . $mysqli->error;
+			echo "<br /><br />";
+			echo "<a href='register.php'>Please try registering again.</a>";
 		}
 	}
 	
