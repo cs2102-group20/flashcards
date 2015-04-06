@@ -57,7 +57,6 @@ if (USER_MAY_EDIT) {
         }
       }
 
-      $mysqli->commit();
       $mysqli->autocommit(true);
     } else {
       echo 'Unable to prepare set update.';
@@ -65,6 +64,7 @@ if (USER_MAY_EDIT) {
     }
   }
   $set = get_set($mysqli, $_GET['id']);
+  $cards = get_cards($mysqli, $_GET['id']);
 }
 ?>
 
