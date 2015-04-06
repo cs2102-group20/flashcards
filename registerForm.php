@@ -54,7 +54,7 @@
 			//insert data if ok
 				insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
 			}else{
-				header("location: regForm_pwMismatch");
+				header("location: regform_pwMismatch");
 			}
 		?>
       </div>
