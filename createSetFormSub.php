@@ -16,7 +16,7 @@
 	$languages = get_languages($mysqli);
 		echo $_GET['langWord'];
 	foreach ($languages as $key => $value) {
-	  if(!isset($_GET['langWord']) || $value['id'] == $_GET['langWord']))$language_id_word=$value['id'];
+	  if(!isset($_GET['langWord']) || $value['id'] == $_GET['langWord'])$language_id_word=$value['id'];
 	}
 	//$language_id_word = implode('', array_map(function ($language) { return ($language['selected']) ? $language['id'] : ''; }, $languages));
 	foreach ($languages as $key => $value) {
