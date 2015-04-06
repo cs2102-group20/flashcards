@@ -58,6 +58,7 @@ if (isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u_id'] || USER_IS_ADMI
       exit(1);
     }
   }
+  $set = get_set($mysqli, $_GET['id']);
 }
 ?>
 
