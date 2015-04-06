@@ -13,7 +13,7 @@
 		}
 	}
 	function get_userId($mysqli, $username){
-		if ($result = $mysqli->query('SELECT id FROM users WHERE username=' . $username) {
+		if ($result = $mysqli->query("SELECT id FROM users WHERE username='" . $username . "'") {
         return $result->fetch_all(MYSQLI_ASSOC);
 		} else {
 			echo "Unable to fetch user id.";
