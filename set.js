@@ -15,7 +15,7 @@ $('#setedit-words')
     .on('focus', 'tr:last-child input', function(ev) {
         var row = $(ev.target).closest('tr');
         row.clone().insertAfter(row);
-        row.find('.setedit-field').prop('required', true);
+        row.find('input').prop('required', true);
     })
     .on('blur', 'input', function(ev) {
         var row = $(ev.target).closest('tr');
