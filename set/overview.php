@@ -26,7 +26,9 @@ $languages = get_languages($mysqli);
 $set = get_set($mysqli, $_GET['id']);
 $cards = get_cards($mysqli, $_GET['id']);
 
-if (isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u_id'] || USER_IS_ADMIN)) {
+define('USER_MAY_EDIT', isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u_id'] || USER_IS_ADMIN));
+
+if (USER_MAY_EDIT) {
   if (isset($_POST['delete'])) {
     if (!$mysqli->query('DELETE FROM card_sets WHERE id = ' . $set['id'])) {
       echo 'Unable to delete set.';
@@ -78,12 +80,14 @@ if (isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u_id'] || USER_IS_ADMI
 
         <div class="col-md-9">
           <form class="setedit setedit-disabled" method="post">
-            <div class="pull-right">
-              <button class="btn btn-default setedit-hidden" id="set-edit" type="button">Edit</button>
-              <button class="btn btn-danger setedit-hidden" id="set-delete" name="delete" type="submit">Delete</button>
-              <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
-              <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
-            </div>
+            <?php if (USER_MAY_EDIT) { ?>
+              <div class="pull-right">
+                <button class="btn btn-default setedit-hidden" id="set-edit" type="button">Edit</button>
+                <button class="btn btn-danger setedit-hidden" id="set-delete" name="delete" type="submit">Delete</button>
+                <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
+                <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
+              </div>
+            <?php } ?>
             <h2 class="setedit-hidden"><?php echo htmlspecialchars($set['title']); ?></h2>
             <input class="form-control setedit-visible" name="title" placeholder="Title" value="<?php echo htmlspecialchars($set['title']); ?>" required>
             <p class="lead setedit-hidden"><?php echo htmlspecialchars($set['description']); ?></p>
