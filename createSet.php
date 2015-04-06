@@ -47,22 +47,21 @@
 			<font size="4" >Please enable it before you proceed.</font><br />
 			</div>
 		</noscript>
-		<form class="createSetForm">
+		<form class="createSetForm" name="createSetForm" action="createSetFormSub.php" method="get">
 		Title<br />
-		<input type="text" id="title" title="Leading or trailing white spaces are trimmed. Extra whitespaces in the middle will be replaced by one space.The title should comprise 1-50 characters." class="createCardTA" maxlength="50" required onchange="this.value=this.value.replace(/(\r\n|\n|\r)/gm,' ').replace(/ +(?= )/g,'').replace(/^\s+|\s+$/g,'');" >
+		<input type="text" name='title' id="title" title="Leading or trailing white spaces are trimmed. Extra whitespaces in the middle will be replaced by one space.The title should comprise 1-50 characters." class="createCardTA" maxlength="50" required onchange="removeExtraWhitespace(this);" >
 		<br /><br />
 		Description <br />
-		<textarea title="Optional. The description should comprise 1-200 characters."id="description" class="createCardTA" rows='3' cols='100' maxlength="200"></textarea>
+		<textarea title="The description should comprise 1-200 characters." name="description" id="description" class="createCardTA" rows='3' cols='100' maxlength="200" required></textarea>
 		<br />		
 		<br />
 			<table id="cardTable">
 				<tr height='25' ><td width='50' align='center'>&nbsp;</td><td width='300' align='center'><font size='3'>Word</font></td><td width='500' align='center'><font size='3'>Translation</font></td></tr>
-				<tr height='25' ><td width='50' align='center'>&nbsp;</td><td width='300' align='center'><font size='1'>The word should comprise 1-30 characters.</font></td><td width='500' align='center'><font size='1'>The translation should comprise 1-60 characters.</font></td></tr>
 				<tr height='25' ><td width='50' align='center'>&nbsp;</td><td width='300' align='center'><font size='2'>Word Language</font></td><td width='500' align='center'><font size='2'>Translation Language</font></td></tr>
 				<tr height='40' ><td width='50' align='center'>&nbsp;</td><td width='300' align='center'>
-					<select id='langWord'><?php foreach ($languages as $language) { ?><option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option><?php } ?></select>
+					<select id='langWord' name='langWord' required><?php foreach ($languages as $language) { ?><option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option><?php } ?></select>
 					</td><td width='500' align='center'>
-					<select id='langTranslation'><?php foreach ($languages as $language) { ?><option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option><?php } ?></select>
+					<select id='langTranslation' name='langTranslation' required><?php foreach ($languages as $language) { ?><option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option><?php } ?></select>
 				</td></tr>
 			</table>
 			<input type="image" src="images/addBtn.png" style="width: 30px; height: 30px" onclick="addEntry();return false;"/> 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php require_once 'common.inc.php'; ?>
 
+<?php session_start();$_SESSION['previous'] = basename($_SERVER['registerForm']); ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -46,16 +47,9 @@
       <!-- Example row of columns -->
 	  <div class="jumbotron" align="center" >
       <div class="smallContainer">
-		<?php
-
-			//server side checking just in case JavaScript is disabled.
-			if(strcmp($_POST['pw'],$_POST['pwConfirm'])==0){
-			//insert data if ok
-				insert_users($mysqli, $_POST['username'], hash('sha256',$_POST['pw']), 'false'); 
-			}else{
-				header("location: regform_pwMismatch");
-			}
-		?>
+			Unexpected error.
+			<br /><br />
+			<a href='createSet.php'>Please try again.</a>
       </div>
 	  <br />
     </div>

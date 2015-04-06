@@ -112,7 +112,7 @@
     <div class="container">
       <!-- Example row of columns -->
 	  <div class="jumbotron" align="center" >
-	  <form method="post" action="registerForm.php">
+	  <form method="post" name='registerForm' action="registerForm.php">
       <div class="smallContainer">
 			<h2>Register</h2>
         
