@@ -56,7 +56,14 @@
 		<br />		
 		<br />
 			<table id="cardTable">
-				
+				<tr height='25' ><td width='50' align='center'>&nbsp;</td><td width='300' align='center'><font size='3'>Word</font></td><td width='500' align='center'><font size='3'>Translation</font></td></tr>
+				<tr height='25' ><td width='50' align='center'>&nbsp;</td><td width='300' align='center'><font size='1'>The word should comprise 1-30 characters.</font></td><td width='500' align='center'><font size='1'>The translation should comprise 1-60 characters.</font></td></tr>
+				<tr height='25' ><td width='50' align='center'>&nbsp;</td><td width='300' align='center'><font size='2'>Word Language</font></td><td width='500' align='center'><font size='2'>Translation Language</font></td></tr>
+				<tr height='40' ><td width='50' align='center'>&nbsp;</td><td width='300' align='center'>
+					<select id='langWord'><?php foreach ($languages as $language) { ?><option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option><?php } ?></select>
+					</td><td width='500' align='center'>
+					<select id='langTranslation'><?php foreach ($languages as $language) { ?><option value="<?php echo $language['id']; ?>" <?php if ($language['selected']) echo 'selected'; ?>><?php echo htmlspecialchars($language['name']); ?></option><?php } ?></select>
+				</td></tr>
 			</table>
 			<input type="image" src="images/addBtn.png" style="width: 30px; height: 30px" onclick="addEntry();return false;"/> 
 			<br /><br />
