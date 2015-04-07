@@ -2,9 +2,15 @@
 <?php
 	//to be transferted to common.inc.php
 	function insert_sets($mysqli, $title, $description, $lang_id_word, $lang_id_translation, $user){
-		$sql="INSERT INTO card_sets (title, description, language1_id,language2_id, user_id) VALUES ('" . $title . "','" . $description . "'," . $lang_id_word . "," . $lang_id_translation . ",'" . $user . "');";
-		if ($mysqli->query($sql) === TRUE) {
-			//insert cards if successful
+		$sql="INSERT INTO card_sets (title, description, language1_id,language2_id, user_id) VALUES (?,?,?,?,?);";
+		if (($insertsetstmt = $mysqli->prepare($sql))){
+			$mysqli->autocommit(false);
+
+			$insertsetstmt->bind_param("ssiii", $title, $description, $lang_id_word, $lang_id_translation,$user);
+			$insertsetstmt->execute();
+			
+			$mysqli->autocommit(true);
+			
 			$words=$_GET['word'];
 			//echo count($words);
 			$translation=$_GET['translation'];
@@ -16,7 +22,9 @@
 			}
 			
 			header("location: createSet_success");
-		} else {
+		}
+		
+		else {
 			//header("location: createSet_unexpected");
 			echo "Error: " . $sql . "<br>" . $mysqli->error;
 			echo "<br /><br />";
@@ -24,10 +32,15 @@
 	}
 
 	function insert_cards($mysqli, $word, $translation, $set_id){
-		$sql="INSERT INTO cards (word1, word2, set_id) VALUES ('" . $word . "','" . $translation . "'," . $set_id . ");";
-		if ($mysqli->query($sql) === TRUE) {
+		$sql="INSERT INTO cards (word1, word2, set_id) VALUES (?,?,?)";
+		if (($insertcardstmt = $mysqli->prepare($sql))){
+			$mysqli->autocommit(false);
 
-		} else {
+		  $insertcardstmt->bind_param("ssiii", $word, $translation, $set_id);
+		  $insertcardstmt->execute();
+		
+		$mysqli->autocommit(true);
+    } else {
 			//header("location: createSet_unexpected");
 			echo "Set created. Unable to insert " . $word . " - " . $translation . ". Cards before this are inserted.";
 			echo "<br /><br />";
