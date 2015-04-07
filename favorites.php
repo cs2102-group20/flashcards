@@ -39,7 +39,7 @@ function search_sets($mysqli, $curUser, $title, $description, $creator, $languag
     . 'WHERE f.user_id = ' . $curUser . ' AND f.set_id=s.id AND '
 	. 's.user_id = u.id AND s.language1_id = l1.id AND s.language2_id = l2.id '
     . 'AND s.title LIKE CONCAT("%", COALESCE(?, ""), "%") AND s.description LIKE CONCAT("%", COALESCE(?, ""), "%") '
-    . 'AND (COALESCE(?, "") = "" OR u.username = ?) AND l1.id IN (' . $language_ids . ') OR l2.id in (' . $language_ids . ');';
+    . 'AND (COALESCE(?, "") = "" OR u.username = ?) AND (l1.id IN (' . $language_ids . ') OR l2.id in (' . $language_ids . '));';
 
   if ($stmt = $mysqli->prepare($query)) {
     $stmt->bind_param("ssss", $title, $description, $creator, $creator);
