@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <?php require_once 'common.inc.php'; ?>
+<?php 
+	if (!USER_IS_LOGGED_IN) {
+			header("location: register");
+	}
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
