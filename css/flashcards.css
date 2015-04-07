@@ -93,7 +93,9 @@ body {
 
 .setedit-enabled .setedit-hidden,
 .setedit-disabled .setedit-visible,
-tr:last-child .setedit-delete {
+tr:last-child .setedit-delete,
+.cardedit-enabled .cardedit-hidden,
+.cardedit-disabled .cardedit-visible {
   display: none !important;
 }
 .setedit-delete {

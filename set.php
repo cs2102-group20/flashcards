@@ -79,7 +79,6 @@ if (USER_IS_LOGGED_IN) {
   <body>
     <?php require 'navigation.inc.php'; ?>
     <div class="container">
-      <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-3">
           <h2>Filter Cards</h2>
@@ -93,6 +92,7 @@ if (USER_IS_LOGGED_IN) {
         <div class="col-md-9">
           <form class="setedit setedit-disabled" method="post">
               <div class="pull-right">
+                <a class="btn btn-default setedit-hidden" href="cards?set=<?php echo urlencode($_GET['id']); ?>">Go to Card View</a>
                 <?php if (USER_IS_LOGGED_IN) { ?>
                   <?php if (has_favorited($mysqli, $set['id'])) { ?>
                     <button class="btn btn-warning setedit-hidden" name="unfavorite" type="submit">Remove from Favorites</button>
@@ -101,9 +101,9 @@ if (USER_IS_LOGGED_IN) {
                   <?php } ?>
                 <?php } ?>
                 <?php if (USER_MAY_EDIT) { ?>
-                  <button class="btn btn-default setedit-hidden" id="set-edit" type="button">Edit</button>
+                  <button class="btn btn-primary setedit-hidden" id="set-edit" type="button">Edit</button>
                   <button class="btn btn-danger setedit-hidden" id="set-delete" name="delete" type="submit">Delete</button>
-                  <a class="btn btn-default setedit-visible" href="?id=<?php echo $_GET['id']; ?>">Cancel</a>
+                  <a class="btn btn-default setedit-visible" href="?id=<?php echo urlencode($_GET['id']); ?>">Cancel</a>
                   <button class="btn btn-primary setedit-visible" name="save" type="submit">Save</button>
                 <?php } ?>
               </div>
