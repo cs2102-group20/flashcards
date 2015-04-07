@@ -99,3 +99,7 @@ tr:last-child .setedit-delete {
 .setedit-delete {
   line-height: inherit;
 }
+.btn-round{
+    border-radius: 50%;
+    overflow: hidden;
+}

@@ -72,7 +72,7 @@
 					</select>
 				</td></tr>
 			</table>
-			<input type="image" src="images/addBtn.png" style="width: 30px; height: 30px" onclick="addEntry();return false;"/> 
+			<button class="btn btn-round" id="backBtn" type="button" style="background-color:#777777" onclick="addEntry();"><img src="images/addBtn.png" style="width: 20px; height: 20px" /></button>
 			<br /><br />
 			<button type="submit" class="btn btn-success" >Create</button>
 		</form>

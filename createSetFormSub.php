@@ -1,15 +1,22 @@
 <?php require_once 'common.inc.php'; ?>
 <?php
-
+	//to be transferted to common.inc.php
 	function insert_sets($mysqli, $title, $description, $lang_id_word, $lang_id_translation, $user){
 		$sql="INSERT INTO card_sets (title, description, language1_id,language2_id, user_id) VALUES ('" . $title . "','" . $description . "'," . $lang_id_word . "," . $lang_id_translation . ",'" . $user . "');";
 		if ($mysqli->query($sql) === TRUE) {
-			header("location: createSet_success");
+			//insert cards if successful
+			$words=$_GET['word'];
+			$translation=$_GET['translation'];
+			for($i=0; $i<count($word);$i++){
+				if($word[$i]!=""){
+					insert_cards($mysqli, $word[$i], $translation[$i], mysqli_insert_id());
+				}
+			}
+			
 		} else {
 			//header("location: createSet_unexpected");
 			echo "Error: " . $sql . "<br>" . $mysqli->error;
 			echo "<br /><br />";
-			echo "<a href='register.php'>Please try registering again.</a>";
 		}
 	}
 	function get_userId($mysqli, $username){
@@ -20,9 +27,20 @@
 			exit(1);
 		}
 	}
+	function insert_cards($mysqli, $word, $translation, $set_id){
+		$sql="INSERT INTO cards (word1, word2, set_id) VALUES ('" . $word . "','" . $translation . "'," . $set_id ");";
+		if ($mysqli->query($sql) === TRUE) {
+			header("location: createSet_success");
+		} else {
+			//header("location: createSet_unexpected");
+			echo "Error: " . $sql . "<br>" . $mysqli->error;
+			echo "<br /><br />";
+		}
 	
+	}
+	
+	//insert sets
 	$languages = get_languages($mysqli);
-		echo $_GET['langWord'];
 	foreach ($languages as $key => $value) {
 	  if(!isset($_GET['langWord']) || $value['id'] == $_GET['langWord'])$language_id_word=$value['id'];
 	}
@@ -37,6 +55,5 @@
 		$userId=$value['id'];
 	}
 	insert_sets($mysqli, $_GET['title'], $_GET['description'], $language_id_word, $language_id_translation, $userId);
-
 
 ?>
