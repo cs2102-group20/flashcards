@@ -52,7 +52,7 @@
 			<font size="4" >Please enable it before you proceed.</font><br />
 			</div>
 		</noscript>
-		<form class="createSetForm" name="createSetForm" action="createSetFormSub.php" method="get">
+		<form class="createSetForm" name="createSetForm" action="createSetFormSub.php" method="post">
 		Title<br />
 		<input type="text" name='title' id="title" title="Leading or trailing white spaces are trimmed. Extra whitespaces in the middle will be replaced by one space.The title should comprise 1-50 characters." class="createCardTA" maxlength="50" required onchange="removeExtraWhitespace(this);" >
 		<br /><br />
