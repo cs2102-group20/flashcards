@@ -64,7 +64,7 @@ function get_set($mysqli, $set) {
 }
 
 function get_cards($mysqli, $set) {
-    if ($stmt = $mysqli->prepare('SELECT word1, word2 FROM cards WHERE set_id = ?')) {
+    if ($stmt = $mysqli->prepare('SELECT id, word1, word2 FROM cards WHERE set_id = ?')) {
         $stmt->bind_param("i", $set);
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);

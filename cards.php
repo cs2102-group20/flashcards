@@ -58,12 +58,13 @@ if (USER_MAY_EDIT) {
             <label for="cardedit-word2">Word in <?php echo htmlspecialchars($set['l2_name']); ?></label>
             <input class="form-control" name="word2" id="cardedit-word2" required>
           </div>
+          <button class="btn btn-primary cardedit-hidden" id="card-flip" type="button">Flip</button>
         </div>
 
         <nav>
           <ul class="pager cardedit-hidden">
-            <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Previous</a></li>
-            <li class="next"><a href="#">Next <span aria-hidden="true">&rarr;</span></a></li>
+            <li class="previous" id="card-prev"><a href="#"><span aria-hidden="true">&larr;</span> Previous</a></li>
+            <li class="next" id="card-next"><a href="#">Next <span aria-hidden="true">&rarr;</span></a></li>
           </ul>
         </nav>
 
@@ -79,7 +80,7 @@ if (USER_MAY_EDIT) {
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="cards.js" defer></script>
     <script>var cards = <?php echo json_encode($cards); ?>;</script>
+    <script src="cards.js" defer></script>
   </body>
 </html>
