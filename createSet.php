@@ -2,7 +2,7 @@
 <?php require_once 'common.inc.php'; ?>
 <?php 
 	if (!USER_IS_LOGGED_IN) {
-			header("location: register");
+			header("location: index");
 	}
 ?>
 <html lang="en">

@@ -6,7 +6,7 @@
 		if ($mysqli->query($sql) === TRUE) {
 			//insert cards if successful
 			$words=$_GET['word'];
-			echo count($words);
+			//echo count($words);
 			$translation=$_GET['translation'];
 			$setId=$mysqli->insert_id;
 			for($i=0; $i<count($words);$i++){
