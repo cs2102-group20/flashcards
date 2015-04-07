@@ -64,7 +64,7 @@ $search_results = search_sets($mysqli, $viewerId, $_GET['title'], $_GET['descrip
       <div class="row">
         <div class="col-md-3">
           <h2>Filter</h2>
-          <form>
+          <form name="favFilter">
             <div class="form-group">
               <label for="filter-title">Title</label>
               <input id="filter-title" name="title" type="text" class="form-control" placeholder="Partial title" value="<?php echo htmlspecialchars($_GET['title']); ?>">
