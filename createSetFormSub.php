@@ -8,7 +8,7 @@
 			$words=$_GET['word'];
 			$translation=$_GET['translation'];
 			for($i=0; $i<count($word);$i++){
-				if($word[$i]!=""){
+				if(strcmp($word[$i],"")){
 					insert_cards($mysqli, $words[$i], $translation[$i], $mysqli->insert_id);
 				}
 			}
