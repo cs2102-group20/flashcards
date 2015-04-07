@@ -6,6 +6,7 @@
 		if ($mysqli->query($sql) === TRUE) {
 			//insert cards if successful
 			$words=$_GET['word'];
+			echo count($words);
 			$translation=$_GET['translation'];
 			for($i=0; $i<count($words);$i++){
 				if(strcmp($words[$i],"")){
@@ -13,6 +14,7 @@
 				}
 			}
 			
+			header("location: createSet_success");
 		} else {
 			//header("location: createSet_unexpected");
 			echo "Error: " . $sql . "<br>" . $mysqli->error;
@@ -30,11 +32,14 @@
 	function insert_cards($mysqli, $word, $translation, $set_id){
 		$sql="INSERT INTO cards (word1, word2, set_id) VALUES ('" . $word . "','" . $translation . "'," . $set_id . ");";
 		if ($mysqli->query($sql) === TRUE) {
-			header("location: createSet_success");
+
 		} else {
 			//header("location: createSet_unexpected");
+			echo "Set created. Unable to insert " . $word . " - " . $translation . ". Cards before this are inserted.";
+			echo "<br /><br />";
 			echo "Error: " . $sql . "<br>" . $mysqli->error;
 			echo "<br /><br />";
+			exit(1);
 		}
 	
 	}
