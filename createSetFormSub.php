@@ -4,16 +4,16 @@
 	function insert_sets($mysqli, $title, $description, $lang_id_word, $lang_id_translation, $user){
 		$sql="INSERT INTO card_sets (title, description, language1_id,language2_id, user_id) VALUES (?,?,?,?,?);";
 		if (($insertsetstmt = $mysqli->prepare($sql))){
-			$mysqli->autocommit(false);
+			//$mysqli->autocommit(false);
 
 			$insertsetstmt->bind_param("ssiii", $title, $description, $lang_id_word, $lang_id_translation,$user);
 			$insertsetstmt->execute();
 			
-			$mysqli->autocommit(true);
+			//$mysqli->autocommit(true);
 			
-			$words=$_GET['word'];
+			$words=$_POST['word'];
 			echo count($words);
-			$translation=$_GET['translation'];
+			$translation=$_POST['translation'];
 			$setId=$mysqli->insert_id;
 			for($i=0; $i<count($words);$i++){
 				if(strcmp($words[$i],"")){
@@ -34,12 +34,12 @@
 	function insert_cards($mysqli, $word, $translation, $set_id){
 		$sql="INSERT INTO cards (word1, word2, set_id) VALUES (?,?,?);";
 		if (($insertcardstmt = $mysqli->prepare($sql))){
-			$mysqli->autocommit(false);
+			//$mysqli->autocommit(false);
 
 			  $insertcardstmt->bind_param("ssi", $word, $translation, $set_id);
 			  $insertcardstmt->execute();
 		
-			$mysqli->autocommit(true);
+			//$mysqli->autocommit(true);
     } else {
 			//header("location: createSet_unexpected");
 			echo "Set created. Unable to insert " . $word . " - " . $translation . ". Cards before this are inserted.";
@@ -54,15 +54,15 @@
 	//insert sets
 	$languages = get_languages($mysqli);
 	foreach ($languages as $key => $value) {
-	  if(!isset($_GET['langWord']) || $value['id'] == $_GET['langWord'])$language_id_word=$value['id'];
+	  if(!isset($_POST['langWord']) || $value['id'] == $_POST['langWord'])$language_id_word=$value['id'];
 	}
 	//$language_id_word = implode('', array_map(function ($language) { return ($language['selected']) ? $language['id'] : ''; }, $languages));
 	foreach ($languages as $key => $value) {
-	  if(!isset($_GET['langTranslation']) || $value['id'] == $_GET['langTranslation'])$language_id_translation=$value['id'];
+	  if(!isset($_POST['langTranslation']) || $value['id'] == $_POST['langTranslation'])$language_id_translation=$value['id'];
 	}
 	//$language_id_translation = implode('', array_map(function ($language) { return ($language['selected']) ? $language['id'] : ''; }, $languages));
 	//GET user id
 
-	insert_sets($mysqli, $_GET['title'], $_GET['description'], $language_id_word, $language_id_translation, USER_ID);
+	insert_sets($mysqli, $_POST['title'], $_POST['description'], $language_id_word, $language_id_translation, USER_ID);
 
 ?>
