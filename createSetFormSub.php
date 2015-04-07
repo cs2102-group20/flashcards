@@ -36,7 +36,7 @@
 		if (($insertcardstmt = $mysqli->prepare($sql))){
 			$mysqli->autocommit(false);
 
-			  $insertcardstmt->bind_param("ssiii", $word, $translation, $set_id);
+			  $insertcardstmt->bind_param("ssi", $word, $translation, $set_id);
 			  $insertcardstmt->execute();
 		
 			$mysqli->autocommit(true);
