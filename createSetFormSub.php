@@ -8,9 +8,10 @@
 			$words=$_GET['word'];
 			echo count($words);
 			$translation=$_GET['translation'];
+			$setId=$mysqli->insert_id;
 			for($i=0; $i<count($words);$i++){
 				if(strcmp($words[$i],"")){
-					insert_cards($mysqli, $words[$i], $translation[$i], $mysqli->insert_id);
+					insert_cards($mysqli, $words[$i], $translation[$i], $setId);
 				}
 			}
 			
