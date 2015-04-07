@@ -29,7 +29,8 @@ create table cards (
   word1 varchar(50) not null,
   word2 varchar(50) not null,
   set_id int not null,
-  foreign key (set_id) references card_sets(id) on delete cascade
+  foreign key (set_id) references card_sets(id) on delete cascade,
+  unique key (word1, word2, set_id)
   );
 
 create table favorites (
