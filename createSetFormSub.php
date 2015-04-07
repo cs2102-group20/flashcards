@@ -9,7 +9,7 @@
 			$translation=$_GET['translation'];
 			for($i=0; $i<count($word);$i++){
 				if($word[$i]!=""){
-					insert_cards($mysqli, $word[$i], $translation[$i], mysqli_insert_id());
+					insert_cards($mysqli, $words[$i], $translation[$i], $mysqli->insert_id);
 				}
 			}
 			
