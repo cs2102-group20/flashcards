@@ -23,55 +23,28 @@
 
 <?php
 $languages = get_languages($mysqli);
-$set = get_set($mysqli, $_GET['set']);
 $cards = get_cards($mysqli, $_GET['set']);
-
-define('USER_MAY_EDIT', isset($set) && USER_IS_LOGGED_IN && (USER_ID == $set['u_id'] || USER_IS_ADMIN));
-
-if (USER_MAY_EDIT) {
-}
 ?>
 
   <body>
     <?php require 'navigation.inc.php'; ?>
     <div class="container">
-      <form class="cardedit cardedit-disabled" method="post">
-        <div class="row">
-          <div class="col-xs-6 text-left">
-            <a class="btn btn-default cardedit-hidden" href="set?id=<?php echo urlencode($_GET['set']); ?>">Return to Set Overview</a>
-          </div>
-          <div class="col-xs-6 text-right">
-            <button class="btn btn-primary cardedit-hidden" id="card-edit" type="button">Edit</button>
-            <button class="btn btn-danger cardedit-hidden" id="card-delete" name="delete" type="submit">Delete</button>
-            <button class="btn btn-default cardedit-visible" id="card-cancel" type="button">Cancel</button>
-            <button class="btn btn-primary cardedit-visible" name="save" type="submit">Save</button>
-          </div>
-        </div>
-        <div class="jumbotron text-center">
-          <h1 class="cardedit-hidden" id="card-word"></h1>
-          <input type="hidden" name="card" id="cardedit-id">
-          <div class="form-group cardedit-visible">
-            <label for="cardedit-word1">Word in <?php echo htmlspecialchars($set['l1_name']); ?></label>
-            <input class="form-control" name="word1" id="cardedit-word1" required>
-          </div>
-          <div class="form-group cardedit-visible">
-            <label for="cardedit-word2">Word in <?php echo htmlspecialchars($set['l2_name']); ?></label>
-            <input class="form-control" name="word2" id="cardedit-word2" required>
-          </div>
-          <button class="btn btn-primary cardedit-hidden" id="card-flip" type="button">Flip</button>
-        </div>
+      <a class="btn btn-default" href="set?id=<?php echo urlencode($_GET['set']); ?>">Return to Set Overview</a>
+      <div class="jumbotron text-center">
+        <h1 id="card-word"></h1>
+        <button class="btn btn-primary" id="card-flip" type="button">Flip</button>
+      </div>
 
-        <nav>
-          <ul class="pager cardedit-hidden">
-            <li class="previous" id="card-prev"><a href="#"><span aria-hidden="true">&larr;</span> Previous</a></li>
-            <li class="next" id="card-next"><a href="#">Next <span aria-hidden="true">&rarr;</span></a></li>
-          </ul>
-        </nav>
+      <nav>
+        <ul class="pager">
+          <li class="previous" id="card-prev"><a href="#"><span aria-hidden="true">&larr;</span> Previous</a></li>
+          <li class="next" id="card-next"><a href="#">Next <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+      </nav>
 
-        <footer>
-          <p>&copy; Company 2014</p>
-        </footer>
-      </form>
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
     </div> <!-- /container -->
 
 
