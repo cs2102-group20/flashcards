@@ -25,3 +25,14 @@ $('#setedit-words')
             row.remove();
         }
     });
+
+$('#filter-word').on('input propertychange', function () {
+    var search = $(this).val();
+    $('#setedit-words tr').has('td').map(function() {
+        if ($(this).find('input').filter(function() { return $(this).val().indexOf(search) >= 0 }).length) {
+            $(this).removeClass('hidden');
+        } else {
+            $(this).addClass('hidden');
+        }
+    });
+});

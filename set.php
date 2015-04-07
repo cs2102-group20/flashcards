@@ -83,8 +83,8 @@ if (USER_IS_LOGGED_IN) {
         <div class="col-md-3">
           <h2>Filter Cards</h2>
           <div class="form-group">
-            <label for="filter-title">Word</label>
-            <input id="filter-title" name="title" type="text" class="form-control" placeholder="Word">
+            <label for="filter-word">Show Only Cards Containing</label>
+            <input id="filter-word" name="title" type="text" class="form-control" placeholder="Partial word">
           </div>
         </div>
 
