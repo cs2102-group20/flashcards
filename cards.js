@@ -25,6 +25,7 @@ $('#card-delete').click(function () {
 
     $('#card-flip').click(function () {
         onFront = !onFront;
+        updateCard();
     })
 
     prev.click(function () {

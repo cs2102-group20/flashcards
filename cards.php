@@ -47,8 +47,8 @@ if (USER_MAY_EDIT) {
             <button class="btn btn-primary cardedit-visible" name="save" type="submit">Save</button>
           </div>
         </div>
-        <div class="jumbotron">
-          <h4 class="text-center cardedit-hidden" id="card-word">word</h4>
+        <div class="jumbotron text-center">
+          <h1 class="cardedit-hidden" id="card-word"></h1>
           <input type="hidden" name="card" id="cardedit-id">
           <div class="form-group cardedit-visible">
             <label for="cardedit-word1">Word in <?php echo htmlspecialchars($set['l1_name']); ?></label>
