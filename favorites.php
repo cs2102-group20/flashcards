@@ -52,7 +52,7 @@ function search_sets($mysqli, $curUser, $title, $description, $creator, $languag
 }
 $viewerId_array = get_userId($mysqli, $_COOKIE['user']);
 foreach ($viewerId_array as $value) {
-	$userId=$value['id'];
+	$viewerId=$value['id'];
 }
 $search_results = search_sets($mysqli, $viewerId, $_GET['title'], $_GET['description'], $_GET['creator'], $languages);
 ?>
