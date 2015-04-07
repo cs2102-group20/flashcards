@@ -28,7 +28,7 @@
 		}
 	}
 	function insert_cards($mysqli, $word, $translation, $set_id){
-		$sql="INSERT INTO cards (word1, word2, set_id) VALUES ('" . $word . "','" . $translation . "'," . $set_id ");";
+		$sql="INSERT INTO cards (word1, word2, set_id) VALUES ('" . $word . "','" . $translation . "'," . $set_id . ");";
 		if ($mysqli->query($sql) === TRUE) {
 			header("location: createSet_success");
 		} else {
