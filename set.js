@@ -27,9 +27,9 @@ $('#setedit-words')
     });
 
 $('#filter-word').on('input propertychange', function () {
-    var search = $(this).val();
+    var search = $(this).val().toLowerCase();
     $('#setedit-words tr').has('td').map(function() {
-        if ($(this).find('input').filter(function() { return $(this).val().indexOf(search) >= 0 }).length) {
+        if ($(this).find('input').filter(function() { return $(this).val().toLowerCase().indexOf(search) >= 0 }).length) {
             $(this).removeClass('hidden');
         } else {
             $(this).addClass('hidden');
