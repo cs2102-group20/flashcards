@@ -12,7 +12,7 @@
 			$mysqli->autocommit(true);
 			
 			$words=$_GET['word'];
-			//echo count($words);
+			echo count($words);
 			$translation=$_GET['translation'];
 			$setId=$mysqli->insert_id;
 			for($i=0; $i<count($words);$i++){
@@ -32,14 +32,14 @@
 	}
 
 	function insert_cards($mysqli, $word, $translation, $set_id){
-		$sql="INSERT INTO cards (word1, word2, set_id) VALUES (?,?,?)";
+		$sql="INSERT INTO cards (word1, word2, set_id) VALUES (?,?,?);";
 		if (($insertcardstmt = $mysqli->prepare($sql))){
 			$mysqli->autocommit(false);
 
-		  $insertcardstmt->bind_param("ssiii", $word, $translation, $set_id);
-		  $insertcardstmt->execute();
+			  $insertcardstmt->bind_param("ssiii", $word, $translation, $set_id);
+			  $insertcardstmt->execute();
 		
-		$mysqli->autocommit(true);
+			$mysqli->autocommit(true);
     } else {
 			//header("location: createSet_unexpected");
 			echo "Set created. Unable to insert " . $word . " - " . $translation . ". Cards before this are inserted.";
