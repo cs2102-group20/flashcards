@@ -129,14 +129,6 @@ function insert_users($mysqli, $username, $hash, $isAdmin){
 
 }
 
-function get_userId($mysqli, $username){
-	if ($result = $mysqli->query("SELECT id FROM users WHERE username='" . $username . "'")) {
-	return $result->fetch_all(MYSQLI_ASSOC);
-	} else {
-		echo "Unable to fetch user id.";
-		exit(1);
-	}
-}
 
 if (isset($_POST['login'])) {
     $hash = hash('sha256', $_POST['pass']);

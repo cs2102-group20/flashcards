@@ -49,10 +49,7 @@
 	}
 	//$language_id_translation = implode('', array_map(function ($language) { return ($language['selected']) ? $language['id'] : ''; }, $languages));
 	//GET user id
-	$userId_array=get_userId($mysqli, $_COOKIE['user']);
-	foreach ($userId_array as $value) {
-		$userId=$value['id'];
-	}
-	insert_sets($mysqli, $_GET['title'], $_GET['description'], $language_id_word, $language_id_translation, $userId);
+
+	insert_sets($mysqli, $_GET['title'], $_GET['description'], $language_id_word, $language_id_translation, USER_ID);
 
 ?>
