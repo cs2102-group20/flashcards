@@ -7,8 +7,8 @@
 			//insert cards if successful
 			$words=$_GET['word'];
 			$translation=$_GET['translation'];
-			for($i=0; $i<count($word);$i++){
-				if(strcmp($word[$i],"")){
+			for($i=0; $i<count($words);$i++){
+				if(strcmp($words[$i],"")){
 					insert_cards($mysqli, $words[$i], $translation[$i], $mysqli->insert_id);
 				}
 			}
