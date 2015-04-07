@@ -22,14 +22,7 @@
 			echo "<br /><br />";
 		}
 	}
-	function get_userId($mysqli, $username){
-		if ($result = $mysqli->query("SELECT id FROM users WHERE username='" . $username . "'")) {
-        return $result->fetch_all(MYSQLI_ASSOC);
-		} else {
-			echo "Unable to fetch user id.";
-			exit(1);
-		}
-	}
+
 	function insert_cards($mysqli, $word, $translation, $set_id){
 		$sql="INSERT INTO cards (word1, word2, set_id) VALUES ('" . $word . "','" . $translation . "'," . $set_id . ");";
 		if ($mysqli->query($sql) === TRUE) {
