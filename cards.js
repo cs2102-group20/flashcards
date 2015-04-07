@@ -40,6 +40,7 @@ $('#card-delete').click(function () {
         }
 
         currentCard--;
+        onFront = true;
         updateCard();
     });
 
@@ -55,6 +56,7 @@ $('#card-delete').click(function () {
         }
 
         currentCard++;
+        onFront = true;
         updateCard();
     });
 
