@@ -21,6 +21,19 @@
     <![endif]-->
   </head>
 
+
+  <body>
+    <?php require 'navigation.inc.php'; ?>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <h2>Filter Cards</h2>
+          <div class="form-group">
+            <label for="filter-word">Show Only Cards Containing</label>
+            <input id="filter-word" name="title" type="text" class="form-control" placeholder="Partial word">
+          </div>
+        </div>
+
 <?php
 $languages = get_languages($mysqli);
 $set = get_set($mysqli, $_GET['id']);
@@ -75,19 +88,6 @@ if (USER_IS_LOGGED_IN) {
   }
 }
 ?>
-
-  <body>
-    <?php require 'navigation.inc.php'; ?>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <h2>Filter Cards</h2>
-          <div class="form-group">
-            <label for="filter-word">Show Only Cards Containing</label>
-            <input id="filter-word" name="title" type="text" class="form-control" placeholder="Partial word">
-          </div>
-        </div>
-
 
         <div class="col-md-9">
           <form class="setedit setedit-disabled" method="post">
