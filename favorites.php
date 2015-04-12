@@ -89,7 +89,7 @@ $search_results = search_sets($mysqli, USER_ID, $_GET['title'], $_GET['descripti
 
 
         <div class="col-md-9">
-          <h2>Results (<?php echo count($search_results); ?>)</h2>
+          <h2>Showing Only Results (<?php echo count($search_results); ?>) from Favorites</h2>
 
           <ul class="list-group">
             <?php foreach ($search_results as $search_result) { ?>
